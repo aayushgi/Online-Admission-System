@@ -1,0 +1,33 @@
+{% extends 'admin/adminlayout.html '%}
+{% block admin %}
+<div class="container">
+    <div class="row">
+    <div class="col-sm-12">
+        <h3>Show Session</h3>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="table-success text-center">
+                        <th>ID</th>
+                        <th>Session Name</th>
+                        <th>CreateDate</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in ab %}
+                    <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.session_name}}</td>
+                        <td>{{i.create_at}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

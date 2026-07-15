@@ -35,11 +35,14 @@
         <div class="row">
             <div class="col-sm-2 h">
                 <h4>Admin login</h4>
-                <p><a href="" style="margin-top: 20px;">Dashboard</a></p>
-                <p><a href="">Add session</a></p>
-                <p><a href="">new session</a></p>
+                <p class="text-white fw-bold text-center"><a href="" style="margin-top: 20px;">Dashboard</a></p>
+                <p class="text-white fw-bold text-center"><a href="{% url 'showsession' %}">Show session</a></p>
+                <p class="text-white fw-bold text-center"><a href="{% url 'addsession' %}">Add session</a></p>
+                <p class="text-white fw-bold text-center"><a href="{% url 'addcourse' %}">Add Course</a></p>
+                  <p class="text-white fw-bold text-center"><a href="{% url 'showcourse' %}">Show Course</a></p>
+                
             </div>
-            <div class="col-sm-10 h bg-info">
+            <div class="col-sm-10 h ">
                 {% block admin %}
                 {% endblock %}
             </div>

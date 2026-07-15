@@ -1,0 +1,72 @@
+{% extends 'admin/adminlayout.html' %}
+
+{% block admin %}
+
+<body style="background-color: rgba(232, 252, 207);">
+
+
+    <div class="container">
+        
+
+        <div class="row mt-2 ">
+            
+            {% for mess in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> Course added successfully.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            <div class="col-sm-12 card ">
+                <div class="card-body ">
+                    <h3 class="fw-bold">Add Course</h3>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <form method="post">
+             {% csrf_token %}
+        
+        <div class="card p-5">
+            <div class="row ">
+                <div class="col-sm-6">
+                    <p>Sellect Session</p>
+                    <select name="session_name" id="" class="form-control">
+                        <option value="">
+                            .....Select Session....
+                        </option>
+                        <option value="">2025-26</option>
+                        <option value="">2026-27</option>
+                        <option value="">2027-28</option>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <p>Course Nmae</p>
+                    <input type="text" class="form-control">
+
+                </div>
+
+                <div class="col-sm-6 mt-3">
+                    <p>Duration</p>
+                    <input type="text" class="form-control">
+
+                </div>
+
+                <div class="col-sm-6 mt-3">
+                    <p>Fees</p>
+                    <input type="text" class="form-control">
+
+                </div>
+
+                <div class="col-sm-12 mt-3">
+                    <input type="submit" value="submit" class="btn btn-success">
+                    <input type="reset" class="btn btn-secondary">
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+
+
+{% endblock %}

@@ -11,3 +11,12 @@ class session(models.Model):
     id=models.IntegerField(primary_key=True,auto_created=True)
     session_name=models.CharField(max_length=20)
     create_at=models.TimeField()
+
+
+class tbl_course(models.Model):
+    id=models.IntegerField(primary_key=True,auto_created=True)
+    session_name=models.CharField(max_length=20)
+    course_name=models.CharField(max_length=200)
+    duration=models.CharField(max_length=20)
+    fees=models.IntegerField()
+    create_at=models.TimeField() 

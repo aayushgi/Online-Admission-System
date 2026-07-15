@@ -38,3 +38,24 @@ def addsession(request):
         messages.success(request, 'Session Added Successfully')
         return redirect('addsession')  
     return render(request, 'admin/addsession.html')
+
+def showsession(request):
+    ab=session.objects.all()
+    return render(request, 'admin/showsession.html', {'ab':ab})
+
+def addcourse(request):
+    if request.method=="POST":
+        session_name=request.POST.get('session_name')
+        course_name=request.POST.get('course_name')
+        duration=request.POST.get('duration')
+        fees=request.POST.get('fees')
+        create_at=datetime.now()
+        ab=tbl_course(session_name=session_name,course_name=course_name,duration=duration,fees=fees,create_at=create_at)
+        ab.save()
+        messages.success(request, 'Course Added Successfully')
+        return redirect('addcourse')  
+    return render(request, 'admin/addcourse.html')
+
+def showcourse(request):
+    ab=tbl_course.objects.all()
+    return render(request, 'admin/showcourse.html', {'ab':ab})
