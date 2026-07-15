@@ -1,0 +1,23 @@
+{% extends 'admin/adminlayout.html '%}
+{% block admin %}
+<div class="container">
+    <div class="row">
+        {% for mess in messages %}
+
+        <div class="alert alert-success" role="alert">
+            session added successfully
+        </div>
+        {% endfor %}
+        <form  method="post">
+            {% csrf_token %}
+            <h3 class="fw-bold">Add Session</h3>
+        <div class="col-sm-12">
+            
+            <p>Add session</p>
+            <input type="text" name="session_name" class="form-control" id="" placeholder="2025-26">
+            <input type="submit" class="btn btn-success mt-4">
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
