@@ -4,56 +4,208 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Biotech Park Admission Portal</title>
+  <title>BioTech Park Admission Portal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"
+    integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css"
+    integrity="sha512-F/yRpRY8sctKzP7exU5PLGejwg/QtjDX6CIy/41nApe7JqdZgCcCzJTNq9Rcp/XwbeeTGillGevBakruY15pxA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     .row1 {
+      color: white;
       background-color: rgb(16, 35, 28);
-      height: 30px;
-      font-size: 12px;
     }
 
-    .row1 p {
-      margin-top: 5px;
-      font-weight: 500;
+    .navigatrion a {
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
+      margin: 0 15px;
+      transition: .3s;
     }
 
-    .row2 {
-      background-color: rgb(255, 255, 255);
-      height: 100px;
+    .row3 {
+      height: 700px;
+      background-color: rgb(87, 131, 83);
     }
-    .row2 p{
-      font-weight: 100;
-    
+
+    .workflow {
+      height: 80%;
+      margin-top: 70px;
+      background-color: rgba(21, 98, 74, 0.322);
+      color: white;
+      font-size: 20px;
+    }
+
+    .workflow-list {
+      height: 70px;
+      background-color: rgb(101, 149, 122);
+
+    }
+
+    .hero {
+      height: 80%;
+      margin-top: 70px;
+    }
+
+    .para {
+      margin-top: -40px;
+    }
+
+    .admin-btn {
+      background-color: rgba(51, 113, 45, 0.951);
+      border: 1px soild white;
+      height: 50px;
+      width: 150px;
+      font-weight: 900;
+      padding-top: 10px;
+    }
+
+    .admin-btn:hover {
+      background-color: white;
+
     }
   </style>
 </head>
 
 <body>
   <div class="container-fluid">
+
     <div class="row row1">
       <div class="col-sm-1"></div>
-      <div class="col-sm-2">
-        <p class="text-light"> Biotech Park Admission Portal</p>
+      <div class="col-sm-3">
+        <p class="fw-bold mt-2 "><i class="bi bi-houses-fill"></i> Biotech Park Admission Portal</p>
       </div>
-      <div class="col-sm-5"></div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4 gap-5 d-flex">
+        <p class="mt-2 fw-bold"><i class="bi bi-envelope-fill"></i> info@biotechpark.org.in</p>
+        <p class="mt-2 fw-bold"><i class="bi bi-telephone-fill"></i> +91-00000000000</p>
+      </div>
 
-      <div class="col-sm-1">
-        <p class="text-light"> info@biotechpark.org.in</p>
-      </div>
-
-      <div class="col-sm-2 mx-5 mt-0">
-        <p class="text-light "> +91-0000000000</p>
-      </div>
     </div>
-    <div class="row row2">
+    <div class="row">
       <div class="col-sm-1"></div>
-      <div class="col-sm-2">
-        <h6 class="fw-bold " style="color: rgb(6, 75, 53); font-weight: 800; font-size: 20px;">Biotech Park</h6>
-        <p class="mt-0" style="  margin-top: -10px;">Online Admission Portal
-        </p>
+      <div class="col-sm-10 ">
+
+        <nav class="navbar ">
+          <div class="container-fluid">
+            <a class="navbar-brand fw-bolder text-success mt-0" style="font-size: 25px;" href="#">
+              <img src="https://i.pinimg.com/736x/61/06/f1/6106f1811a191b532f6c400aefa4d315.jpg" alt="logo" width="30"
+                height="24" class="d-inline-block mt-0">
+              BioTech Park
+
+            </a>
+            <div class="navigatrion">
+              <a href="">Home</a>
+              <a href="">Course</a>
+              <a href="">About</a>
+              <a href="">Contact</a>
+              <a href="#" class="btn btn-primary rounded-4">Login</a>
+            </div>
+          </div>
+        </nav>
       </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row row3 bg-success">
+      <div class="col-sm-1"></div>
+      <!--admission open-->
+      <div class="col-sm-6  hero">
+
+        <div class="row">
+          <div class="col-sm-4 fw-bolder mt-5 text-center text-white card rounded-4"
+            style="background-color: rgba(51, 111, 92, 0.559);">
+            <p class="mt-2"><i class="bi bi-leaf-fill"></i> Admission Open 2026-27</p>
+
+          </div>
+          <h1 class="text-white fw-bolder mt-3">Biotech Park Online</h1>
+          <h1 class="text-white fw-bolder mb-5">Admission Portal</h1>
+          <p class="text-white fw-bolder para">A secure, modern and premium admission platform for student registration,
+            document verification, course enrollment and fee payment tracking.</p>
+
+        </div>
+        <a href="#" class="btn  rounded-4 shadow mt-3"
+          style="background-color: rgb(224, 182, 93); height: 50px; width: 100px; font-weight: 900; padding-top: 10px;"><i
+            class="bi bi-box-arrow-in-right"></i> Login</a>
+        <a href="{% url 'adminlogin' %}" class="btn  rounded-4 shadow-lg  mt-4 mx-4 admin-btn"><i
+            class="bi bi-lock-fill"></i> Admin Login</a>
+      </div>
+
+      <!--admission open-->
+
+
+      <!--admission workflow-->
+      <div class="col-sm-4">
+        <div class="card workflow">
+          <h2 class="fw-bolder text-center mt-2">Admission Workflow</h2>
+          <div class="row mx-4 mt-2 ">
+            <div class="col-sm-12 card rounded-2 mb-4 shadow workflow-list">
+              <p class="text-white fw-bold mt-3 mx-2">
+
+                <i class="fa-solid fa-1">.</i>Student credentials issued by admin
+              </p>
+            </div>
+            <div class="col-sm-12 card rounded-2 mb-4 shadow workflow-list">
+              <p class="text-white fw-bold mt-3 mx-2">
+
+                <i class="fa-solid fa-2">.</i>
+                Student fills basic information
+              </p>
+            </div>
+            <div class="col-sm-12 card rounded-2 mb-4 shadow workflow-list">
+              <p class="text-white fw-bold mt-3 mx-2">
+
+                <i class="fa-solid fa-3">.</i>
+                Documents are uploaded securely
+              </p>
+            </div>
+            <div class="col-sm-12 card rounded-2 mb-4 shadow workflow-list">
+              <p class="text-white fw-bold mt-3 mx-2">
+
+                <i class="fa-solid fa-4">.</i>
+                Admin verifies application details
+              </p>
+            </div>
+            <div class="col-sm-12 card rounded-2 mb-4 shadow workflow-list">
+              <p class="text-white fw-bold mt-3 mx-1">
+
+                <i class="fa-solid fa-5">.</i>Fee payment and enrollment
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10 bg-success card rounded-4 mt-5">
+        <div class="row">
+          <div class="col-sm-3  text-center">
+            <h1 class="mt-3" style="color: rgb(221, 221, 16); font-weight: 900;">100%</h1>
+            <p class="mt-0 text-white " style="font-weight: 700;">online Process</p>
+          </div>
+          <div class="col-sm-3  text-center">
+            <h1 class="mt-3" style="color: rgb(221, 221, 16); font-weight: 900;">Success</h1>
+            <p class="mt-0 text-white " style="font-weight: 700;">Student Login</p>
+          </div>
+          <div class="col-sm-3  text-center">
+            <h1 class="mt-3" style="color: rgb(221, 221, 16); font-weight: 900;">Fast</h1>
+            <p class="mt-0 text-white " style="font-weight: 700;">Verification</p>
+          </div>
+          <div class="col-sm-3  text-center">
+            <h1 class="mt-3" style="color: rgb(221, 221, 16); font-weight: 900;">Track</h1>
+            <p class="mt-0 text-white " style="font-weight: 700;">Payment Status</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1"></div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

@@ -9,13 +9,22 @@
 
 
     <div class="row mt-2 ">
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
 
-        {% for mess in messages %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> Course added successfully.
+            {% if message.tags == 'success' %}
+                <strong>Success!</strong>
+            {% elif message.tags == 'warning' %}
+                <strong>Alert!</strong>
+            {% endif %}
+
+            {{ message }}
+
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
-        {% endfor %}
+    {% endfor %}
+{% endif %}
         <div class="card shadow border-0 rounded-4 mb-3 mt-3" style="background-color: #DCFCE7;">
             <div class="card-body">
                 <h3 class="fw-bolder">Add Course</h3>

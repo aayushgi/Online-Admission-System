@@ -34,13 +34,14 @@ def addsession(request):
         session_name=request.POST.get('session_name')
         create_at=datetime.now()
         sv=session.objects.filter(session_name=session_name).first()
-        if sv is not None:
-            messages.success(request, 'Session Already Exists')
+        if sv:
+            messages.warning(request, 'Session Already Exists')
             
         else:
             ab=session(session_name=session_name,create_at=create_at)
             ab.save()
             messages.success(request, 'Session Added Successfully')
+        return redirect('addsession')
           
     return render(request, 'admin/addsession.html')
 
