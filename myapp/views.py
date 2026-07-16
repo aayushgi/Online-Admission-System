@@ -44,6 +44,7 @@ def showsession(request):
     return render(request, 'admin/showsession.html', {'ab':ab})
 
 def addcourse(request):
+    sessions=session.objects.all()
     if request.method=="POST":
         session_name=request.POST.get('session_name')
         course_name=request.POST.get('course_name')
@@ -54,7 +55,7 @@ def addcourse(request):
         ab.save()
         messages.success(request, 'Course Added Successfully')
         return redirect('addcourse')  
-    return render(request, 'admin/addcourse.html')
+    return render(request, 'admin/addcourse.html',{'sessions':sessions})
 
 def showcourse(request):
     ab=tbl_course.objects.all()

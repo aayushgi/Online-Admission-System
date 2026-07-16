@@ -4,21 +4,24 @@
 
 
 <div class="container">
-    <div class="row">
+    
+    <div class="row  card mt-3 shadow  card-dark">
     <div class="col-sm-12">
-        <h3>Show Course</h3>
+        <h3 class="fw-bold text-center" >Show List</h3>
     </div>
     </div>
-    <div class="row">
+    <div class="row card mt-3">
         <div class="col-sm-12">
-            <table class="table table-bordered">
-                <thead>
+            <table  class="table table-hover  table-bordered align-middle shadow mt-3">
+                <thead class="table-dark">
                     <tr class="table-success text-center">
                         <th>Id</th>
                         <th>Session </th>
                         <th>Course Name</th>
                         <th>Duration</th>
                         <th>Fees</th>
+                        <th>CreateDate</th>
+                        <th style="width: 180px;" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +33,10 @@
                         <td>{{i.duration}}</td>
                         <td>{{i.fees}}</td>
                         <td>{{i.create_at}}</td>
+                        <td>
+                            <button class="btn btn-success btn-sm me-4">Edit</button>
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </td>
                         
                     </tr>
                     {% endfor %}

@@ -2,7 +2,7 @@
 
 {% block admin %}
 
-<body style="background-color: rgba(232, 252, 207);">
+
 
 
     <div class="container">
@@ -16,45 +16,54 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
             {% endfor %}
-            <div class="col-sm-12 card ">
-                <div class="card-body ">
-                    <h3 class="fw-bold">Add Course</h3>
-                </div>
-
-            </div>
+           <div class="card shadow border-0 rounded-4 mb-3 mt-3" style="background-color: #DCFCE7;" >
+        <div class="card-body">
+        <h3 class="fw-bolder">Add Course</h3>
+         <small class="fw-bold">Create new course with session, duration and fees.</small>
+        </div>
+        
+    </div>
         </div>
         <br>
+        
+        
         <form method="post">
              {% csrf_token %}
         
-        <div class="card p-5">
+        <div class="card p-3 shadow border-0 rounded-4">
+            <h3 class="fw-bold mx-2 mb-3">Add New Course</h3>
+              
             <div class="row ">
+              
                 <div class="col-sm-6">
-                    <p>Sellect Session</p>
+                    <h6 class="fw-bold">Sellect Session</h6>
                     <select name="session_name" id="" class="form-control">
                         <option value="">
                             .....Select Session....
-                        </option>
-                        <option value="">2025-26</option>
-                        <option value="">2026-27</option>
-                        <option value="">2027-28</option>
+                            </option>
+                            
+                        
+                        <option value="2025-26">2025-26</option>
+                        
+                        <option value="2026-27">2026-27</option>
+                        <option value="2027-28">2027-28</option>
                     </select>
                 </div>
                 <div class="col-sm-6">
-                    <p>Course Nmae</p>
-                    <input type="text" class="form-control">
+                    <h6 class="fw-bold">Course Name</h6>
+                    <input type="text" name="course_name" class="form-control">
 
                 </div>
 
                 <div class="col-sm-6 mt-3">
-                    <p>Duration</p>
-                    <input type="text" class="form-control">
+                    <h6 class="fw-bold">Duration</h6>
+                    <input type="text" name="duration" placeholder="Example:6 months" class="form-control">
 
                 </div>
 
                 <div class="col-sm-6 mt-3">
-                    <p>Fees</p>
-                    <input type="text" class="form-control">
+                    <h6 class="fw-bold">Fees</h6>
+                    <input type="number" name="fees" class="form-control">
 
                 </div>
 
@@ -66,7 +75,7 @@
         </div>
         </form>
     </div>
-</body>
+
 
 
 {% endblock %}

@@ -3,6 +3,14 @@
 {% block admin %}
 
 <div class="container mt-5">
+    <div class="card shadow border-0 rounded-4 mb-3" style="width: 1000px; margin-left: 115px; background-color: #DCFCE7;">
+        <div class="card-body">
+        <h3 class="fw-bolder">Add Session</h3>
+         <small class="fw-bold">Create admission session from this page.</small>
+        </div>
+        
+    </div>
+    <br>
     <div class="row justify-content-center">
 
         <div class="col-md-10">
@@ -16,8 +24,8 @@
 
             <div class="card shadow-lg border-0 rounded-4">
 
-                <div class="card-header bg-success text-white text-center rounded-top-4">
-                    <h3 class="mb-0">📅 Add New Session</h3>
+                <div class="card-header   rounded-top-4" style="background-color: #16A34A;;">
+                    <h3 class="mb-0 fw-bold">📅 Add New Session</h3>
                 </div>
 
                 <div class="card-body p-4">
@@ -26,24 +34,21 @@
                         {% csrf_token %}
 
                         <div class="mb-3">
-                            <label class="form-label fw-bold">
+                            <label class="form-label fw-bold" style="font-size: 20px;">
                                 Session Name
                             </label>
 
-                            <input
-                                type="text"
-                                name="session_name"
-                                class="form-control form-control-lg"
-                                placeholder="Example: 2025-26"
-                                required>
+                            <input type="text" name="session_name" class="form-control form-control-lg"
+                                placeholder="Example: 2025-26" required>
                         </div>
 
-                        <div class="text-center mt-4">
-                            <button type="submit" class="btn btn-success px-5">
-                                Add Session
+                        <div class=" mt-4">
+                            <button type="submit" class="btn btn-success px-3">
+                                Save Session
                             </button>
+                            <button type="reset" class="btn btn-secondary ">Clear</button>
 
-                            
+
                         </div>
 
                     </form>
