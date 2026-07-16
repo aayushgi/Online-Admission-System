@@ -1,0 +1,123 @@
+
+{% extends 'admin/adminlayout.html' %}
+
+{% block admin %}
+
+<div class="container">
+
+    <div class="row mt-2">
+
+        <div class="card shadow border-0 rounded-4 mb-3 mt-3" style="background-color:#ebc032;">
+            <div class="card-body">
+                <h3 class="fw-bold">Edit Course</h3>
+                <small class="fw-bold">
+                    Update course details.
+                </small>
+            </div>
+        </div>
+
+    </div>
+
+    <form method="post" action="{% url 'updatecourse' course.id %}">
+        {% csrf_token %}
+
+        <div class="card shadow border-0 rounded-4 p-3">
+
+            <h3 class="fw-bold mb-3">Update Course</h3>
+
+            <div class="row">
+
+            
+                <div class="col-md-6">
+                    <label class="fw-bold mb-2">Select Session</label>
+
+                    <select name="session_name" class="form-control">
+
+                        {% for i in sessions %}
+
+                        <option value="{{ i.session_name }}"
+                        {% if i.session_name == course.session_name %}
+                        selected
+                        {% endif %}>
+
+                            {{ i.session_name }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                
+                <div class="col-md-6">
+
+                    <label class="fw-bold mb-2">
+                        Course Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="course_name"
+                        class="form-control"
+                        value="{{ course.course_name }}"
+                        required>
+
+                </div>
+
+                
+                <div class="col-md-6 mt-3">
+
+                    <label class="fw-bold mb-2">
+                        Duration
+                    </label>
+
+                    <input
+                        type="text"
+                        name="duration"
+                        class="form-control"
+                        value="{{ course.duration }}"
+                        required>
+
+                </div>
+
+    
+                <div class="col-md-6 mt-3">
+
+                    <label class="fw-bold mb-2">
+                        Fees
+                    </label>
+
+                    <input
+                        type="number"
+                        name="fees"
+                        class="form-control"
+                        value="{{ course.fees }}"
+                        required>
+
+                </div>
+
+                
+                <div class="col-12 mt-4">
+
+                    <button type="submit" class="btn btn-success">
+                        Update Course
+                    </button>
+
+                    <a href="{% url 'showcourse' %}" class="btn btn-secondary">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
+```

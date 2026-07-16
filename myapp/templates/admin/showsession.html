@@ -24,8 +24,8 @@
                         <td>{{i.session_name}}</td>
                         <td>{{i.create_at}}</td>
                         <td >
-                            <button class="btn btn-success btn-sm me-4">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            
+                            <a href="{% url 'deletesession' i.id %}" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                     {% endfor %}

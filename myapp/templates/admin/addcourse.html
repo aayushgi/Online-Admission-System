@@ -5,49 +5,42 @@
 
 
 
-    <div class="container">
-        
+<div class="container">
 
-        <div class="row mt-2 ">
-            
-            {% for mess in messages %}
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Course added successfully.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
+    <div class="row mt-2 ">
+
+        {% for mess in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Course added successfully.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+        <div class="card shadow border-0 rounded-4 mb-3 mt-3" style="background-color: #DCFCE7;">
+            <div class="card-body">
+                <h3 class="fw-bolder">Add Course</h3>
+                <small class="fw-bold">Create new course with session, duration and fees.</small>
             </div>
-            {% endfor %}
-           <div class="card shadow border-0 rounded-4 mb-3 mt-3" style="background-color: #DCFCE7;" >
-        <div class="card-body">
-        <h3 class="fw-bolder">Add Course</h3>
-         <small class="fw-bold">Create new course with session, duration and fees.</small>
+
         </div>
-        
     </div>
-        </div>
-        <br>
-        
-        
-        <form method="post">
-             {% csrf_token %}
-        
+    <br>
+
+
+    <form method="post">
+        {% csrf_token %}
+
         <div class="card p-3 shadow border-0 rounded-4">
             <h3 class="fw-bold mx-2 mb-3">Add New Course</h3>
-              
+
             <div class="row ">
-              
+
                 <div class="col-sm-6">
                     <h6 class="fw-bold">Sellect Session</h6>
-                    <select name="session_name" id="" class="form-control">
-                        <option value="">
-                            .....Select Session....
-                            </option>
-                            
-                        
-                        <option value="2025-26">2025-26</option>
-                        
-                        <option value="2026-27">2026-27</option>
-                        <option value="2027-28">2027-28</option>
-                    </select>
+                    
+
+                            <input type="text" name="session_name" class="form-control form-control-lg"
+                                placeholder="Example: 2025-26" required>
                 </div>
                 <div class="col-sm-6">
                     <h6 class="fw-bold">Course Name</h6>
@@ -63,7 +56,7 @@
 
                 <div class="col-sm-6 mt-3">
                     <h6 class="fw-bold">Fees</h6>
-                    <input type="number" name="fees" class="form-control">
+                    <input type="number" name="fees" class="form-control" required>
 
                 </div>
 
@@ -73,8 +66,8 @@
                 </div>
             </div>
         </div>
-        </form>
-    </div>
+    </form>
+</div>
 
 
 
