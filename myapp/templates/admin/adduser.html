@@ -1,0 +1,44 @@
+{% extends 'admin/adminlayout.html' %}
+{% block admin %}
+
+<form action="" class="mt-3 card shadow rounded-2 ">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <p>Enter Name</p>
+                <input type="text" class="form-control" name="name">
+
+            </div>
+            <div class="col-sm-6">
+                <p>Enter email</p>
+                <input type="email" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <p>Enter Mobile Number</p>
+                <input type="number" class="form-control" name="contact_no">
+            </div>
+            <div class="col-sm-6">
+                <p>Enter Password</p>
+                <input type="password" name="password" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <p>Enter Gender</p>
+                <input type="radio"  name="gender" value="M">male
+                <input type="radio"  name="gender" value="F">female
+                <input type="radio"  name="gender" value="O">other
+            </div>
+           
+        </div>
+        <div class="row mb-4">
+            <div class="col-sm-12">
+                <a href="" class="btn btn-success" >Submit</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

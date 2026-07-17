@@ -81,19 +81,45 @@ def showsession(request):
     return render(request, 'admin/showsession.html', {'ab':ab})
 
 def addcourse(request):
-    sessions=session.objects.all()
-    if request.method=="POST":
-        session_name=request.POST.get('session_name')
-        course_name=request.POST.get('course_name')
-        duration=request.POST.get('duration')
-        fees=request.POST.get('fees')
-        create_at=datetime.now()
-        ab=tbl_course(session_name=session_name,course_name=course_name,duration=duration,fees=fees,create_at=create_at)
+
+    # Check admin login session
+    if 'adminid' not in request.session:
+        return redirect('adminlogin')
+
+    sessions = session.objects.all()
+
+    if request.method == "POST":
+        session_name = request.POST.get('session_name')
+        course_name = request.POST.get('course_name')
+        duration = request.POST.get('duration')
+        fees = request.POST.get('fees')
+        create_at = datetime.now()
+
+        ab = tbl_course(
+            session_name=session_name,
+            course_name=course_name,
+            duration=duration,
+            fees=fees,
+            create_at=create_at
+        )
         ab.save()
+
         messages.success(request, 'Course Added Successfully')
-        return redirect('addcourse')  
-    return render(request, 'admin/addcourse.html',{'sessions':sessions})
+        return redirect('addcourse')
+
+    return render(
+        request,
+        'admin/addcourse.html',
+        {'sessions': sessions}
+    )
 
 def showcourse(request):
     ab=tbl_course.objects.all()
     return render(request, 'admin/showcourse.html', {'ab':ab})
+
+def logout(request):
+    request.session.flush()
+    return redirect('adminlogin')
+
+def addstudent(request):
+    return render(request, 'admin/adduser.html')

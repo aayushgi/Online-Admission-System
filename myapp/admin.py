@@ -4,3 +4,4 @@ from .models import*
 admin.site.register(login)
 admin.site.register(session)
 admin.site.register(tbl_course)
+admin.site.register(tbl_student)

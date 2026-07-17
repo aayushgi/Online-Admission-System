@@ -1,37 +1,183 @@
-{% extends 'admin/adminlayout.html '%}
+{% extends 'admin/adminlayout.html' %}
+
 {% block admin %}
-<div class="container">
-    <div class="row card mt-3 shadow  card-dark">
-    <div class="col-sm-12 rounded">
-        <h3 class="fw-bold text-center">Session List</h3>
+
+<style>
+    /* Main Page Background */
+    .session-page {
+        min-height: 100vh;
+        background: #eefafa;
+        padding: 25px;
+    }
+
+    /* Top Header */
+    .page-header {
+        background: white;
+        padding: 25px 30px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0, 80, 80, 0.08);
+        margin-bottom: 35px;
+    }
+
+    .page-header h2 {
+        color: #073b3d;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .page-header p {
+        color: #667777;
+        margin: 0;
+    }
+
+    /* Main Table Card */
+    .session-card {
+        background: white;
+        border-radius: 25px;
+        padding: 35px;
+        box-shadow: 0 10px 30px rgba(0, 80, 80, 0.08);
+    }
+
+    .session-title {
+        color: #073b3d;
+        font-weight: 800;
+    }
+
+    /* Add Session Button */
+    .add-session-btn {
+        background: linear-gradient(90deg, #0c8b82, #14b8a6);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .add-session-btn:hover {
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(20, 184, 166, 0.3);
+    }
+
+    /* Custom Table */
+    .custom-table {
+        border-collapse: separate;
+        border-spacing: 0 15px;
+    }
+
+    .custom-table thead th {
+        border: none;
+        color: #667777;
+        padding: 15px 18px;
+        background: transparent;
+    }
+
+    .custom-table tbody td {
+        background: #f1fafa;
+        border: none;
+        padding: 18px;
+        vertical-align: middle;
+        font-weight: 600;
+        color: #073b3d;
+    }
+
+    /* Rounded Row */
+    .custom-table tbody td:first-child {
+        border-radius: 15px 0 0 15px;
+    }
+
+    .custom-table tbody td:last-child {
+        border-radius: 0 15px 15px 0;
+    }
+
+    /* Delete Button */
+    .delete-btn {
+        border-radius: 6px;
+    }
+</style>
+
+
+<div class="session-page">
+
+    <!-- Top Header -->
+    <div class="page-header">
+        <h2>Show Session</h2>
+        <p>View all admission sessions.</p>
     </div>
-    </div>
-    <div class="row card mt-3">
-        <div class="col-sm-12 table-responsive">
-            <table class="table table-hover  table-bordered align-middle shadow mt-3">
-                <thead class="table-dark">
-                    <tr class="table-success text-center">
+
+
+    <!-- Session Table Card -->
+    <div class="session-card">
+
+        <!-- Heading + Add Session Button -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h3 class="session-title">
+                Session List
+            </h3>
+
+            <a href="{% url 'addsession' %}" class="add-session-btn">
+                <i class="bi bi-plus-lg"></i>
+                Add Session
+            </a>
+
+        </div>
+
+
+        <!-- Table -->
+        <div class="table-responsive">
+
+            <table class="table custom-table">
+
+                <thead>
+                    <tr>
                         <th>ID</th>
                         <th>Session Name</th>
-                        <th>CreateDate</th>
-                        <th style="width: 180px;" class="text-center">Action</th>
+                        <th>Create Date</th>
+                        <th style="width: 180px;">
+                            Action
+                        </th>
                     </tr>
                 </thead>
+
                 <tbody>
+
                     {% for i in ab %}
+
                     <tr>
-                        <td>{{i.id}}</td>
-                        <td>{{i.session_name}}</td>
-                        <td>{{i.create_at}}</td>
-                        <td >
-                            
-                            <a href="{% url 'deletesession' i.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        <td>{{ i.id }}</td>
+
+                        <td>{{ i.session_name }}</td>
+
+                        <td>{{ i.create_at }}</td>
+
+                        <td>
+                            <a href="{% url 'deletesession' i.id %}"
+                               class="btn btn-outline-danger btn-sm delete-btn">
+                                Delete
+                            </a>
                         </td>
                     </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            No Sessions Found
+                        </td>
+                    </tr>
+
                     {% endfor %}
+
                 </tbody>
+
             </table>
+
         </div>
+
     </div>
+
 </div>
+
 {% endblock %}
