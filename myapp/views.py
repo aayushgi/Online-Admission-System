@@ -34,7 +34,17 @@ def dashboard(request):
 
 #def admindash(request):
     total_session = session.objects.count()
+
     return render(request, 'admin/dashboard.html',{'total_session': total_session})
+
+def course(request):
+    return render(request, 'student/course.html')
+
+def about(request):
+    return render(request, 'student/about.html')
+
+def contact(request):
+    return render(request, 'student/contact.html')
 
 
 def addsession(request):

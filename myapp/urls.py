@@ -17,4 +17,7 @@ urlpatterns=[
     path('deletecourse/<int:id>/',deletecourse,name='deletecourse'),
     path('addstudent/',addstudent,name='addstudent'),
     path('logout/',logout,name='logout'),
+    path('course/', course, name='course'),
+    path('about/', about, name='about'),
+    path('contact/', contact, name='contact'),
 ] 

@@ -90,6 +90,69 @@
       top: 0;
       z-index: 1000;
     }
+
+    .row7 {
+      min-height: 600px;
+      background-color: rgb(246, 250, 247);
+    }
+
+    .mentor-card {
+      border-radius: 20px;
+      transition: .3s;
+      padding-top: 5px !important;
+      min-height: 300px;
+    }
+
+    .mentor-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .mentor-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 8px solid #edf8f7;
+      display: block;
+    }
+
+    .mentor-name {
+      margin-top: 5px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #0b4b3c;
+    }
+
+    .mentor-designation {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .last-row {
+      background: linear-gradient(90deg,
+          #07281E 0%,
+          #0F4736 30%,
+          #1B6B53 65%,
+          #2F8B70 100%);
+
+      height: 300px;
+    }
+    .list-last a{
+      font-size: 18px;
+      text-decoration: none;
+      color: white;
+      
+    }
+    .list-last a:hover{
+      color: rgb(245, 186, 10);
+    }
+    .nav-row{
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: white;
+}
   </style>
 </head>
 
@@ -107,7 +170,7 @@
       </div>
 
     </div>
-    <div class="row">
+    <div class="row nav-row">
       <div class="col-sm-1"></div>
       <div class="col-sm-10 ">
 
@@ -120,10 +183,10 @@
 
             </a>
             <div class="navigatrion">
-              <a href="">Home</a>
-              <a href="">Course</a>
-              <a href="">About</a>
-              <a href="">Contact</a>
+              <a href="{% url 'home' %}">Home</a>
+              <a href="{% url 'course' %}">Course</a>
+              <a href="{% url 'about' %}">About</a>
+              <a href="{% url 'contact' %}">Contact</a>
               <a href="#" class="btn btn-primary rounded-4">Login</a>
             </div>
           </div>
@@ -131,6 +194,9 @@
       </div>
       <div class="col-sm-1"></div>
     </div>
+
+
+
     <div class="row row3 bg-success">
       <div class="col-sm-1"></div>
       <!--admission open-->
@@ -296,28 +362,194 @@
         </div>
       </div>
       <div class="col-sm-1"></div>
-
-
-
-
-
-
-
     </div>
-    <div class="row row6 ">
+
+
+    <div class="row row6">
       <div class="col-sm-1"></div>
       <div class="col-sm-10">
-        <div class="row mt-5">
-          <div class="col-sm-3">
-            <p class="text-white rounded-5 border text-center p-2"
-              style="font-size: 25px; font-weight: 600; background-color: rgb(42, 117, 173);"> About Biotech Park </p>
+        <div class="row">
+          <div class="col-sm-2 p-2 rounded-5 border text-center text-white mt-5"
+            style="background-color: rgb(42, 118, 166);">
+            <h5 class="fw-bold">About Biotech Park</h5>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-sm-6 text-white">
+            <h2 class="fw-bold mt-4">Functional Biotech Park In North India</h2>
+            <p class="mt-2 mt-4 " style="font-size: 18px;">Bio Tech Park, Lucknow is a premier research and training
+              centre dedicated to biotechnology, agriculture,
+              healthcare and scientific advancement. This admission portal makes training programme enrollment smooth,
+              transparent and fully trackable.</p>
+
+            <button class="btn shadow fw-bolder mt-4 rounded-5"
+              style="background-color: rgb(228, 187, 100);">Login</button>
+          </div>
+          <div class="col-sm-6  " style="margin-top: -48px;">
+            <img src="https://picsum.photos/seed/biotech-video/1000/650" class="rounded-5 w-100" alt="">
           </div>
         </div>
       </div>
+
       <div class="col-sm-1"></div>
-      
+    </div>
+
+    <!--our mentor-->
+
+
+    <div class="row row7">
+
+      <div class="col-sm-1"></div>
+
+      <div class="col-sm-10">
+
+        <!-- Heading -->
+        <div class="row mt-5">
+          <div class="col-12">
+            <p class="mb-1 fw-bold" style="color:rgb(184,134,37);">
+              LEADERSHIP
+            </p>
+
+            <h2 class="fw-bold">
+              Our Mentors
+            </h2>
+          </div>
+        </div>
+
+        <!-- Mentor Cards -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3">
+
+          <!-- Card 1 -->
+          <div class="col">
+            <div class="card mentor-card shadow border-0 text-center p-4 h-100">
+
+              <img src="https://biotechpark.softproindia.in/Content/images/Govermer.jpg" class="mentor-img mx-auto"
+                alt="">
+
+              <div class="card-body">
+                <h5 class="mentor-name">Smt. Anandiben Patel</h5>
+                <p class="mentor-designation">
+                  Hon’ble Governor <br>
+
+                  Uttar Pradesh
+
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col">
+            <div class="card mentor-card shadow border-0 text-center p-4 h-100">
+
+              <img src="https://biotechpark.softproindia.in/Content/images/yogiji.jpg" class="mentor-img mx-auto"
+                alt="">
+
+              <div class="card-body">
+                <h5 class="mentor-name">Smt. Anandiben Patel</h5>
+                <p class="mentor-designation">
+                  Hon'ble Governor<br>
+                  Uttar Pradesh
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col">
+            <div class="card mentor-card shadow border-0 text-center p-4 h-100">
+
+              <img src="https://biotechpark.softproindia.in/Content/images/Minister2.jpg" class="mentor-img mx-auto"
+                alt="">
+
+              <div class="card-body">
+                <h5 class="mentor-name">Shri Anil Kumar</h5>
+                <p class="mentor-designation">
+                  Hon'ble Cabinet Minister<br>
+                  DST, GoUP
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="col">
+            <div class="card mentor-card shadow border-0 text-center p-4 h-100">
+
+              <img src="https://biotechpark.softproindia.in/Content/images/Prof%20JP%20Pandey.jpg"
+                class="mentor-img mx-auto" alt="">
+
+              <div class="card-body">
+                <h5 class="mentor-name">Prof. J. P. Pandey</h5>
+                <p class="mentor-designation">
+                  CEO, Biotech Park<br>
+                  Lucknow
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-sm-1"></div>
 
     </div>
+
+
+
+
+
+    <div class="row last-row">
+
+      <div class="col-sm-1"></div>
+
+      <div class="col-sm-3">
+
+        <h3 class="text-white mt-5"><i class="bi bi-leaf-fill"></i><br>Biotech Park</h3>
+        <p class="text-white mt-3">A premium online admission portal for student registration, document verification,
+          course enrollment and fee tracking.</p>
+      </div>
+      <div class="col-sm-2 text-white mt-5 ">
+        <h4 class="fw-bold">Quick Links</h4>
+        <ul style="list-style: none; padding: 5px; word-spacing: 15px;" class="list-last">
+          <li class="text-white"><a href="">Home</a></li>
+          <li><a href="">Courses</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Login</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-2 text-white mt-5 ">
+        <h4 class="fw-bold">Portal Access</h4>
+        <ul style="list-style: none; padding: 5px; word-spacing: 1px;" class="list-last">
+          <li class="text-white"><a href="">Login</a></li>
+          <li><a href="{% url 'adminlogin' %}">Admin Portal</a></li>
+          <li><a href="">Avilable Courses</a></li>
+          <li><a href="">Verification process</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-sm-2 text-white mt-5 ">
+        <h4 class="fw-bold">Contact Info</h4>
+        <ul style="list-style: none; padding: 5px; word-spacing: 1px;" class="list-last">
+          <li class="text-white"><i class="bi bi-geo-alt-fill"></i> Biotech park, Lucknow</li>
+          <br>
+          <li><i class="bi bi-envelope-fill"></i> info@biotechpark.org.in</li>
+          <br>
+          <li><i class="bi bi-telephone-fill"></i> +91-00000000000</li>
+          
+        </ul>
+      </div>
+      <div class="col-sm-1"></div>
+
+    </div>
+
+
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
