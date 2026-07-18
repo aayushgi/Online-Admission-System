@@ -22,11 +22,17 @@ def loginsave(request):
         else:
             return redirect('adminlogin')
 def dashboard(request):
-    return render(request, 'admin/dashboard.html')
+    total_session = session.objects.count()
+    total_course = tbl_course.objects.count()
+    
+    return render(request, 'admin/dashboard.html', {'total_session': total_session ,'total_course':total_course})    
+
+    
 
 
-def admindash(request):
-    return render(request, 'admin/adminlayout.html')
+#def admindash(request):
+    total_session = session.objects.count()
+    return render(request, 'admin/dashboard.html',{'total_session': total_session})
 
 
 def addsession(request):

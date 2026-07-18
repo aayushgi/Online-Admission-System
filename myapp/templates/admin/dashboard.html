@@ -1,4 +1,575 @@
 {% extends 'admin/adminlayout.html' %}
+
 {% block admin %}
-<h1>hello world</h1>
-{% endblock %}
+
+<style>
+    /* Main Dashboard */
+    .dashboard-wrapper {
+        background-color: #eaf8f7;
+        min-height: 100vh;
+        padding: 30px;
+    }
+
+
+    /* ================= HEADER ================= */
+
+    .dashboard-header {
+        background-color: white;
+        border-radius: 20px;
+        padding: 25px 30px;
+        box-shadow: 0 8px 25px rgba(0, 90, 90, 0.08);
+    }
+
+    .dashboard-header h1 {
+        font-weight: 700;
+        color: #073b42;
+        margin-bottom: 5px;
+    }
+
+    .dashboard-header p {
+        color: #607477;
+        margin-bottom: 0;
+    }
+
+
+    /* Admin Profile */
+
+    .admin-profile {
+        background-color: #e1faf7;
+        padding: 10px 20px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .admin-profile-icon {
+        width: 50px;
+        height: 50px;
+        background-color: #119b91;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+    }
+
+    .admin-profile h6 {
+        margin: 0;
+        color: #073b42;
+        font-weight: 700;
+    }
+
+    .admin-profile p {
+        margin: 0;
+        font-size: 14px;
+        color: #607477;
+    }
+
+
+    /* ================= STAT CARDS ================= */
+
+    .stat-card {
+        background-color: white;
+        border-radius: 20px;
+        padding: 30px;
+        min-height: 220px;
+        box-shadow: 0 8px 25px rgba(0, 90, 90, 0.08);
+        transition: 0.3s;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 90, 90, 0.15);
+    }
+
+
+    /* Card Icon */
+
+    .stat-icon {
+        width: 65px;
+        height: 65px;
+        border-radius: 18px;
+        background-color: #119b91;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+
+    /* Card Number */
+
+    .stat-number {
+        font-size: 32px;
+        font-weight: 700;
+        color: #073b42;
+        margin-bottom: 5px;
+    }
+
+
+    /* Card Title */
+
+    .stat-title {
+        color: #607477;
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+
+    /* ================= BOTTOM SECTION ================= */
+
+    .section-card {
+        background-color: white;
+        border-radius: 20px;
+        padding: 30px;
+        min-height: 330px;
+        box-shadow: 0 8px 25px rgba(0, 90, 90, 0.08);
+    }
+
+    .section-title {
+        color: #073b42;
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+
+    /* Verification Box */
+
+    .verification-box {
+        background-color: #edfbfa;
+        border: 1px solid #c9ece8;
+        border-radius: 18px;
+        padding: 25px;
+        min-height: 140px;
+    }
+
+    .verification-box h3 {
+        color: #078a80;
+        font-weight: 700;
+    }
+
+    .verification-box p {
+        color: #586d71;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+
+    /* ================= QUICK ACTIONS ================= */
+
+    .action-btn {
+        background-color: #f0f9f8;
+        border: 1px solid #cce8e5;
+        border-radius: 18px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-decoration: none;
+        color: #073b42;
+        font-weight: 600;
+        min-height: 90px;
+        transition: 0.3s;
+    }
+
+    .action-btn:hover {
+        background-color: #e2f7f5;
+        color: #073b42;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 90, 90, 0.10);
+    }
+
+
+    /* Action Icon */
+
+    .action-icon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        border-radius: 15px;
+        background-color: #f5b942;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: #073b42;
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 768px) {
+
+        .dashboard-wrapper {
+            padding: 15px;
+        }
+
+        .dashboard-header {
+            padding: 20px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 26px;
+        }
+
+        .admin-profile {
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            min-height: 190px;
+        }
+
+        .section-card {
+            padding: 20px;
+        }
+
+    }
+</style>
+
+
+
+<div class="dashboard-wrapper">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <!-- Left Side -->
+
+            <div class="col-md-8">
+
+                <h1>Admin Dashboard</h1>
+
+                <p>
+                    Professional admission control panel with live counts.
+                </p>
+
+            </div>
+
+
+            <!-- Right Side -->
+
+            <div class="col-md-4 d-flex justify-content-md-end">
+
+                <div class="admin-profile">
+
+                    <div class="admin-profile-icon">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+
+                    <div>
+                        <h6>Administrator</h6>
+                        <p>Biotech Park</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= TOP CARDS ================= -->
+
+    <div class="row g-4">
+
+
+        <!-- Total Sessions -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="bi bi-calendar3"></i>
+                </div>
+
+                <div class="stat-number">
+                    {{ total_session }}
+                </div>
+
+                <div class="stat-title">
+                    Total Sessions
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Total Courses -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="bi bi-journal-text"></i>
+                </div>
+
+                <div class="stat-number">
+                    {{ total_course }}
+                </div>
+
+                <div class="stat-title">
+                    Total Courses
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Total Students -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </div>
+
+                <div class="stat-number">
+                    <!--this is for -->
+                </div>
+
+                <div class="stat-title">
+                    Total Students
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Pending Verification -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="bi bi-file-earmark-check-fill"></i>
+                </div>
+
+                <div class="stat-number">
+                    {{ pending_verification }}
+                </div>
+
+                <div class="stat-title">
+                    Pending Verification
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= BOTTOM SECTION ================= -->
+
+    <div class="row g-4 mt-3">
+
+
+        <!-- Verification Summary -->
+
+        <div class="col-lg-6">
+
+            <div class="section-card">
+
+                <h3 class="section-title">
+                    Verification Summary
+                </h3>
+
+
+                <div class="row g-3">
+
+
+                    <!-- Verified Students -->
+
+                    <div class="col-md-6">
+
+                        <div class="verification-box">
+
+                            <h3>
+                                {{ verified_students }}
+                            </h3>
+
+                            <p>
+                                Verified Students
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Enrolled Students -->
+
+                    <div class="col-md-6">
+
+                        <div class="verification-box">
+
+                            <h3>
+                                {{ enrolled_students }}
+                            </h3>
+
+                            <p>
+                                Enrolled / Paid
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= QUICK ACTIONS ================= -->
+
+        <div class="col-lg-6">
+
+            <div class="section-card">
+
+                <h3 class="section-title">
+                    Quick Actions
+                </h3>
+
+
+                <div class="row g-3">
+
+
+                    <!-- Add Student -->
+
+                    <div class="col-md-6">
+
+                        <a href="{% url 'addstudent' %}" class="action-btn">
+
+                            <div class="action-icon">
+                                <i class="bi bi-person-plus-fill"></i>
+                            </div>
+
+                            <span>
+                                Add Student
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- Verify Documents -->
+
+                    <div class="col-md-6">
+
+                        <a href="#" class="action-btn">
+
+                            <div class="action-icon">
+                                <i class="bi bi-file-earmark-check-fill"></i>
+                            </div>
+
+                            <span>
+                                Verify Documents
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- Add Course -->
+
+                    <div class="col-md-6">
+
+                        <a href="{% url 'addcourse' %}" class="action-btn">
+
+                            <div class="action-icon">
+                                <i class="bi bi-journal-plus"></i>
+                            </div>
+
+                            <span>
+                                Add Course
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- Fees -->
+
+                    <div class="col-md-6">
+
+                        <a href="#" class="action-btn">
+
+                            <div class="action-icon">
+                                <i class="bi bi-currency-rupee"></i>
+                            </div>
+
+                            <span>
+                                Fees / Enrolled
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- ================= RECENT ACTIVITY ================= -->
+
+    <div class="row mt-4">
+
+        <div class="col-12">
+
+            <div class="section-card">
+
+                <h3 class="section-title">
+                    Recent Activity
+                </h3>
+
+               
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    {% endblock %}
