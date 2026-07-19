@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css"
     integrity="sha512-F/yRpRY8sctKzP7exU5PLGejwg/QtjDX6CIy/41nApe7JqdZgCcCzJTNq9Rcp/XwbeeTGillGevBakruY15pxA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <style>
  .row1 {
       color: white;
@@ -66,6 +68,69 @@
       height: 300px;
 
 }
+.login-card{
+    background:#fff;
+    border-radius:30px;
+    padding:45px 35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    transition:.4s;
+    position:relative;
+}
+
+.login-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 50px rgba(0,0,0,.12);
+}
+
+.icon-box{
+    width:80px;
+    height:80px;
+    margin:auto;
+    margin-top:-20px;
+    margin-bottom:25px;
+    border-radius:22px;
+    background:#0b6b4b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:32px;
+    box-shadow:0 10px 25px rgba(11,107,75,.35);
+}
+
+.login-card h2{
+    font-size:38px;
+    font-weight:700;
+    color:#0d2230;
+    margin-bottom:15px;
+}
+
+.login-card p{
+    color:#5c6770;
+    font-size:19px;
+    line-height:1.7;
+    margin-bottom:35px;
+}
+
+.login-btn{
+    display:block;
+    width:100%;
+    padding:18px;
+    text-align:center;
+    text-decoration:none;
+    font-size:22px;
+    font-weight:700;
+    color:#102a43;
+    border-radius:50px;
+    background:linear-gradient(90deg,#dfab3b,#ffd979);
+    transition:.3s;
+    box-shadow:0 12px 25px rgba(223,171,59,.35);
+}
+
+.login-btn:hover{
+    color:#102a43;
+    transform:scale(1.03);
+}
 
   </style>
 </head>
@@ -113,15 +178,57 @@
 <div class="row top-3-row">
   <div class="col-sm-1"></div>
   <div class="col-sm-10">
-    <p class="fw-bolder rounded-5 border text-center text-white p-2 " style="width: 150px; height: 50px; background-color:  #47d3a94f ; margin-top: 50px; font-size: 20px;">About Portal</p>
-<h1 class="text-white fw-bolder mt-3">About Biotech Park Admission Portal</h1>
-<p class="text-white " style="font-size: 20px;">A secure online admission system for registration, verification, fee tracking and enrollment.</p>
+    <p class="fw-bolder rounded-5 border text-center text-white p-2 " style="width: 150px; height: 50px; background-color:  #47d3a94f ; margin-top: 50px; font-size: 20px;">Portal login</p>
+<h1 class="text-white fw-bolder mt-3">Login Panel</h1>
+<p class="text-white " style="font-size: 20px;">Choose your portal and continue.</p>
   </div>
   <div class="col-sm-1"></div>
 </div>
 
+<div class="container py-5">
+    <div class="row justify-content-center g-4">
 
+        <!-- Student Card -->
+        <div class="col-lg-5 col-md-6">
+            <div class="login-card text-center">
 
+                <div class="icon-box">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+
+                <h2>Student Login</h2>
+
+                <p>
+                    Login to fill application form, upload documents and
+                    track fee status.
+                </p>
+
+                <a href="#" class="login-btn">Student Login</a>
+
+            </div>
+        </div>
+
+        <!-- Admin Card -->
+        <div class="col-lg-5 col-md-6">
+            <div class="login-card text-center">
+
+                <div class="icon-box">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+
+                <h2>Admin Login</h2>
+
+                <p>
+                    Manage sessions, courses, students, verification and fees.
+                </p>
+
+                <a href="{% url 'adminlogin' %}" class="login-btn">Admin Login</a>
+
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
     <br>

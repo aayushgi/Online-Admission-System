@@ -46,8 +46,18 @@ def about(request):
 def contact(request):
     return render(request, 'student/contact.html')
 
+def loginviahome(request):
+    return render(request, 'student/login.html')
+
 
 def addsession(request):
+    
+    # Check admin login session
+    if 'adminid' not in request.session:
+        return redirect('adminlogin')
+
+    sessions = session.objects.all()
+    
     if request.method=="POST":
         session_name=request.POST.get('session_name')
         create_at=datetime.now()

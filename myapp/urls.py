@@ -20,4 +20,5 @@ urlpatterns=[
     path('course/', course, name='course'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
+    path('loginviahome/', loginviahome, name='loginviahome'),
 ] 
