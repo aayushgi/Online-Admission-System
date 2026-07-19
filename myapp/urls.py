@@ -21,4 +21,7 @@ urlpatterns=[
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
     path('loginviahome/', loginviahome, name='loginviahome'),
+    path('student_login/', student_login, name='student_login'),
+    path('studentdash/',studentdash,name='studentdash'),
+    path('apply1/', apply1, name='apply1'),
 ] 

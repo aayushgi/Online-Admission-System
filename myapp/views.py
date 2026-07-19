@@ -205,3 +205,37 @@ Biotech Park Admission Team
         return redirect('addstudent')
 
     return render(request, 'admin/adduser.html')
+
+
+
+    #--------------------------------------------------------------------student shows-------------------------------------------------------------------------------
+    
+    
+    
+def student_login(request):
+    if request.method == "POST":
+        emailaddress = request.POST.get('emailaddress')
+        password = request.POST.get('password')
+        user = tbl_student.objects.filter(emailaddress=emailaddress, password=password).first()
+        print(user)
+        if user:
+            request.session['studentid'] = emailaddress
+            return redirect('studentdash')
+        
+        else:
+            return redirect('studentlogin')
+    return render(request, 'student/student_login.html')
+
+def studentdash(request):
+    return render(request, 'student/studentdash.html')
+
+
+def apply1(request):
+    ab=tbl_course.objects.all()
+    ad=session.objects.all()
+    context={
+        'ab':ab,#this is for course
+        'ad':ad #this is for session
+    }
+    return render(request, 'student/apply1.html', context)
+    
