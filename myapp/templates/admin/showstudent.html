@@ -1,0 +1,186 @@
+{% extends 'admin/adminlayout.html' %}
+
+{% block admin %}
+
+<style>
+    /* Main Page Background */
+    .course-page {
+        min-height: 100vh;
+        background: #eefafa;
+        padding: 25px;
+    }
+
+    /* Top Header */
+    .page-header {
+        background: white;
+        padding: 25px 30px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0, 80, 80, 0.08);
+        margin-bottom: 35px;
+    }
+
+    .page-header h2 {
+        color: #073b3d;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .page-header p {
+        color: #667777;
+        margin: 0;
+    }
+
+    /* Course Table Card */
+    .course-card {
+        background: white;
+        border-radius: 25px;
+        padding: 35px;
+        box-shadow: 0 10px 30px rgba(0, 80, 80, 0.08);
+    }
+
+    .course-title {
+        color: #073b3d;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    /* Add Course Button */
+    .add-course-btn {
+        display: inline-block;
+        background: linear-gradient(90deg, #0c8b82, #14b8a6);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .add-course-btn:hover {
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(20, 184, 166, 0.3);
+    }
+
+    /* Custom Table */
+    .custom-table {
+        border-collapse: separate;
+        border-spacing: 0 15px;
+        margin-bottom: 0;
+    }
+
+    .custom-table thead th {
+        border: none;
+        color: #667777;
+        background: transparent;
+        padding: 15px 18px;
+        white-space: nowrap;
+    }
+
+    .custom-table tbody td {
+        background: #f1fafa;
+        border: none;
+        padding: 18px;
+        vertical-align: middle;
+        font-weight: 600;
+        color: #073b3d;
+        white-space: nowrap;
+    }
+
+    /* Rounded Rows */
+    .custom-table tbody td:first-child {
+        border-radius: 15px 0 0 15px;
+    }
+
+    .custom-table tbody td:last-child {
+        border-radius: 0 15px 15px 0;
+    }
+
+    /* Buttons */
+    .edit-btn,
+    .delete-btn {
+        border-radius: 6px;
+    }
+</style>
+
+
+<div class="course-page">
+
+    <!-- Top Header -->
+    <div class="page-header">
+        <h2>Show Student</h2>
+        <p>View and manage all students.</p>
+    </div>
+
+
+    <!-- Course List Card -->
+    <div class="course-card">
+
+        <!-- Heading and Add Course Button -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h3 class="course-title">
+                Student List
+            </h3>
+
+
+        </div>
+
+
+        <!-- Responsive Table -->
+        <div class="table-responsive">
+
+            <table class="table custom-table">
+
+                <thead>
+                    <tr>
+                       
+                        
+                        <th>Student Name</th>
+                        <th>Email</th>
+                        <th>Mobile Number</th>
+                        <th>Password</th>
+                        <th>Gender</th>
+                        <th>DOB</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for i in ab %}
+
+                    <tr>
+
+                        <td>{{ i.name }}</td>
+
+                        <td>{{ i.emailaddress }}</td>
+
+                        <td>{{ i.contact_no }}</td>
+
+                        <td>{{ i.password }}</td>
+
+                        <td>
+                             {{ i.gender }}
+                        </td>
+
+                        <td>{{ i.dob }}</td>
+
+                       
+
+                    </tr>
+
+                   
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -145,6 +145,13 @@ def showcourse(request):
     ab=tbl_course.objects.all()
     return render(request, 'admin/showcourse.html', {'ab':ab})
 
+def showstudent(request):
+    # Check admin login session
+   
+
+    ab = tbl_student.objects.all()
+    return render(request, 'admin/showstudent.html', {'ab': ab})
+
 def logout(request):
     request.session.flush()
     return redirect('adminlogin')
@@ -223,7 +230,7 @@ def student_login(request):
             return redirect('studentdash')
         
         else:
-            return redirect('studentlogin')
+            return redirect('student_login')
     return render(request, 'student/student_login.html')
 
 def studentdash(request):
@@ -236,7 +243,7 @@ def apply1(request):
 
     
     sid=request.session.get('studentid')
-    data=tbl_student.objects.get(emailaddress=sid)
+    data=tbl_student.objects.filter(emailaddress=sid).first()
     context={
         'ab':ab,#this is for course
         'ad':ad,#this is for session

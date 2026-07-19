@@ -25,7 +25,7 @@ class tbl_course(models.Model):
 class tbl_student(models.Model):
     sid=models.IntegerField(primary_key=True,auto_created=True)
     name=models.CharField(max_length=225,null=True)
-    emailaddress=models.EmailField(max_length=225,null=True)
+    emailaddress=models.EmailField(max_length=225,null=True,unique=True)
     password=models.CharField(max_length=16,null=True)
     contact_no=models.IntegerField(null=True)
     gender=models.CharField(max_length=2,null=True)
