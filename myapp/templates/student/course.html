@@ -66,6 +66,104 @@
       height: 300px;
 
 }
+.course-card{
+    background:#fff;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.course-card:hover{
+    transform:translateY(-12px);
+    box-shadow:0 25px 60px rgba(25,135,84,.20);
+}
+
+.course-image{
+    position:relative;
+    overflow:hidden;
+}
+
+.course-image img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.course-card:hover img{
+    transform:scale(1.08);
+}
+
+.duration{
+    position:absolute;
+    top:20px;
+    left:20px;
+    background:#198754;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:600;
+}
+
+.course-body{
+    padding:30px;
+}
+
+.icon-box{
+    width:70px;
+    height:70px;
+    background:linear-gradient(135deg,#198754,#0b6b4b);
+    color:#fff;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin-top:-65px;
+    position:relative;
+    box-shadow:0 10px 25px rgba(25,135,84,.25);
+}
+
+.course-body h3{
+    margin-top:25px;
+    font-weight:700;
+}
+
+.course-body p{
+    color:#666;
+    margin:18px 0;
+}
+
+.features{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.features span{
+    background:#eef8f2;
+    color:#198754;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.course-btn{
+    background:linear-gradient(90deg,#d9a83a,#ffd978);
+    border:none;
+    border-radius:40px;
+    padding:14px;
+    font-size:18px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.course-btn:hover{
+    transform:scale(1.03);
+}
 
   </style>
 </head>
@@ -121,7 +219,221 @@
 </div>
 
 
+<div class="container py-5">
 
+    <div class="text-center mb-5">
+        <span class="badge bg-success px-3 py-2 rounded-pill fs-6">
+            OUR COURSES
+        </span>
+
+        <h2 class="fw-bold mt-3 display-5">
+            Biotechnology Training Programs
+        </h2>
+
+        <p class="text-muted">
+            Learn industry-oriented biotechnology courses with practical training.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        
+        <div class="col-lg-4 col-md-6">
+
+            <div class="course-card">
+
+                <div class="course-image">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwbL4nCLw5MtH2tZviOMxL1FMGcwM9rgSfP0hs_7jwTQ&s=10"
+                        class="img-fluid">
+
+                    <span class="duration">
+                        6 Months
+                    </span>
+
+                </div>
+
+                <div class="course-body">
+
+                    <div class="icon-box">
+                        <i class="bi bi-dna"></i>
+                    </div>
+
+                    <h3>Bioinformatics</h3>
+
+                    <p>
+                        Biological data analysis and computational tools for modern biotechnology.
+                    </p>
+
+                    <div class="features">
+
+                        <span>Certificate</span>
+
+                        <span>Lab</span>
+
+                        <span>Placement</span>
+
+                    </div>
+
+                    <a href="#" class="btn course-btn w-100">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+            <div class="col-lg-4 col-md-6">
+
+            <div class="course-card">
+
+                <div class="course-image">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwbL4nCLw5MtH2tZviOMxL1FMGcwM9rgSfP0hs_7jwTQ&s=10"
+                        class="img-fluid">
+
+                    <span class="duration">
+                        6 Months
+                    </span>
+
+                </div>
+
+                <div class="course-body">
+
+                    <div class="icon-box">
+                        <i class="bi bi-dna"></i>
+                    </div>
+
+                    <h3>Bioinformatics</h3>
+
+                    <p>
+                        Biological data analysis and computational tools for modern biotechnology.
+                    </p>
+
+                    <div class="features">
+
+                        <span>Certificate</span>
+
+                        <span>Lab</span>
+
+                        <span>Placement</span>
+
+                    </div>
+
+                    <a href="#" class="btn course-btn w-100">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="course-card">
+
+                <div class="course-image">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwbL4nCLw5MtH2tZviOMxL1FMGcwM9rgSfP0hs_7jwTQ&s=10"
+                        class="img-fluid">
+
+                    <span class="duration">
+                        6 Months
+                    </span>
+
+                </div>
+
+                <div class="course-body">
+
+                    <div class="icon-box">
+                        <i class="bi bi-dna"></i>
+                    </div>
+
+                    <h3>Bioinformatics</h3>
+
+                    <p>
+                        Biological data analysis and computational tools for modern biotechnology.
+                    </p>
+
+                    <div class="features">
+
+                        <span>Certificate</span>
+
+                        <span>Lab</span>
+
+                        <span>Placement</span>
+
+                    </div>
+
+                    <a href="#" class="btn course-btn w-100">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="course-card">
+
+                <div class="course-image">
+
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwbL4nCLw5MtH2tZviOMxL1FMGcwM9rgSfP0hs_7jwTQ&s=10"
+                        class="img-fluid">
+
+                    <span class="duration">
+                        6 Months
+                    </span>
+
+                </div>
+
+                <div class="course-body">
+
+                    <div class="icon-box">
+                        <i class="bi bi-dna"></i>
+                    </div>
+
+                    <h3>Bioinformatics</h3>
+
+                    <p>
+                        Biological data analysis and computational tools for modern biotechnology.
+                    </p>
+
+                    <div class="features">
+
+                        <span>Certificate</span>
+
+                        <span>Lab</span>
+
+                        <span>Placement</span>
+
+                    </div>
+
+                    <a href="#" class="btn course-btn w-100">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    
+
+    
+
+    </div>
+
+</div>
 
 
     <br>

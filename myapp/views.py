@@ -26,8 +26,9 @@ def loginsave(request):
 def dashboard(request):
     total_session = session.objects.count()
     total_course = tbl_course.objects.count()
+    total_student = tbl_student.objects.count()
     
-    return render(request, 'admin/dashboard.html', {'total_session': total_session ,'total_course':total_course})    
+    return render(request, 'admin/dashboard.html', {'total_session': total_session ,'total_course':total_course,'total_student':total_student})    
 
     
 
