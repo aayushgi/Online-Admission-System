@@ -1,7 +1,7 @@
 {% extends 'student/studentlayout.html' %}
 {% block student %}
 
-<form method="POST" class="mt-3 card shadow rounded-2">
+<form method="POST" class="mt-3 card shadow rounded-2" action="{% url 'apply1' %}">
     {% csrf_token %}
 
     <div class="container">
@@ -12,17 +12,17 @@
         <div class="row">
             <div class="col-sm-4 mt-3">
                 <p>Enter Name</p>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" >
             </div>
 
             <div class="col-sm-4 mt-3">
                 <p>Enter Email</p>
-                <input type="email" class="form-control" name="emailaddress">
+                <input type="email" class="form-control" name="emailaddress" value="{{data.emailaddress}}">
             </div>
 
             <div class="col-sm-4 mt-3">
                 <p>Contact No</p>
-                <input type="number" class="form-control" name="contact_no">
+                <input type="number" class="form-control" name="contact_no" >
             </div>
         </div>
 
@@ -30,12 +30,12 @@
         <div class="row">
             <div class="col-sm-6 mt-3">
                 <p>Father's Name</p>
-                <input type="text" class="form-control" name="f_name">
+                <input type="text" class="form-control" name="f_name" value="{{data.f_name}}">
             </div>
 
             <div class="col-sm-6 mt-3">
                 <p>Mother's Name</p>
-                <input type="text" class="form-control" name="m_name">
+                <input type="text" class="form-control" name="m_name" value="{{data.m_name}}">
             </div>
         </div>
 

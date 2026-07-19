@@ -233,9 +233,15 @@ def studentdash(request):
 def apply1(request):
     ab=tbl_course.objects.all()
     ad=session.objects.all()
+
+    
+    sid=request.session.get('studentid')
+    data=tbl_student.objects.get(emailaddress=sid)
     context={
         'ab':ab,#this is for course
-        'ad':ad #this is for session
+        'ad':ad,#this is for session
+        'data':data
     }
+    sid=request.session.get('studentid')
     return render(request, 'student/apply1.html', context)
     
