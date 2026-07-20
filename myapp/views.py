@@ -245,6 +245,23 @@ def apply1(request):
     
     sid=request.session.get('studentid')
     data=tbl_student.objects.filter(emailaddress=sid).first()
+    #dataget
+
+    f_name=request.POST.get('f_name')
+    m_name=request.POST.get('m_name')
+    address=request.POST.get('address')
+    addhar_no=request.POST.get('addhar_no')
+    Session=request.POST.get('session')
+    course=request.POST.get('cousre')
+
+    #set data viya model
+    data.f_name=f_name
+    data.m_name=m_name
+    data.addhar_no=addhar_no
+    data.Session=Session
+    data.course=course
+    data.save()
+
     context={
         'ab':ab,#this is for course
         'ad':ad,#this is for session
@@ -253,3 +270,6 @@ def apply1(request):
     sid=request.session.get('studentid')
     return render(request, 'student/apply1.html', context)
     
+
+def apply2(request):
+    return render(request,'student/apply2.html')

@@ -25,4 +25,5 @@ urlpatterns=[
     path('student_login/', student_login, name='student_login'),
     path('studentdash/',studentdash,name='studentdash'),
     path('apply1/', apply1, name='apply1'),
+    path('apply2',apply2,name='apply2'),
 ] 
