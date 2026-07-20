@@ -26,4 +26,5 @@ urlpatterns=[
     path('studentdash/',studentdash,name='studentdash'),
     path('apply1/', apply1, name='apply1'),
     path('apply2',apply2,name='apply2'),
+    path('studentlogout',studentlogout,name='studentlogout'),
 ] 

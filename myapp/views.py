@@ -235,7 +235,12 @@ def student_login(request):
     return render(request, 'student/student_login.html')
 
 def studentdash(request):
-    return render(request, 'student/studentdash.html')
+    email=request.session.get('studentid')
+    student=tbl_student.objects.filter(emailaddress=email).first()
+    context={
+        'student':student
+    }
+    return render(request, 'student/studentdash.html',context)
 
 
 def apply1(request):
@@ -265,11 +270,24 @@ def apply1(request):
     context={
         'ab':ab,#this is for course
         'ad':ad,#this is for session
-        'data':data
+        'data':data,
+        'student':data
     }
     sid=request.session.get('studentid')
-    return render(request, 'student/apply1.html', context)
+    return render(request, 'student/apply1.html',context)
     
 
 def apply2(request):
-    return render(request,'student/apply2.html')
+    email=request.session.get('studentid')
+    data=tbl_student.objects.filter(emailaddress=email).first()
+    context={
+        'data':data,
+        'student':data
+    }
+    return render(request,'student/apply2.html',context)
+
+
+
+def studentlogout(request):
+    request.session.flush()
+    return redirect('student_login')
