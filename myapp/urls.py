@@ -27,4 +27,5 @@ urlpatterns=[
     path('apply1/', apply1, name='apply1'),
     path('apply2',apply2,name='apply2'),
     path('studentlogout',studentlogout,name='studentlogout'),
+    path('details_review/<str:emailaddress>/', details_review, name='details_review'),
 ] 

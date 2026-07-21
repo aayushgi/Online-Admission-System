@@ -4,6 +4,7 @@ from datetime import datetime
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
@@ -285,7 +286,7 @@ def apply2(request):
         hs_marksheet=request.FILES.get('hs_marksheet')
         inter_percentage=request.POST.get('inter_percentage')
         inter_marksheet=request.FILES.get('inter_marksheet')
-        addhar_pic=request.FILES.get('addhar_pic')
+        aadhar_pic=request.FILES.get('aadhar_pic')
         profile_pic=request.FILES.get('profile_pic')
         sign=request.FILES.get('sign')
     #set the data on model
@@ -293,7 +294,7 @@ def apply2(request):
         data.hs_marksheet=hs_marksheet
         data.inter_percentage=inter_percentage
         data.inter_marksheet=inter_marksheet
-        data.addhar_pic=addhar_pic
+        data.aadhar_pic=aadhar_pic
         data.profile_pic=profile_pic
         data.sign=sign
         data.application_status='DV'
@@ -307,5 +308,13 @@ def studentlogout(request):
     request.session.flush()
     return redirect('student_login')
 
+def details_review(request, emailaddress):
+    student = tbl_student.objects.get(emailaddress=emailaddress)
 
-    
+    return render(
+        request,
+        'admin/details_review.html',
+        {
+            'student': student
+        }
+    )

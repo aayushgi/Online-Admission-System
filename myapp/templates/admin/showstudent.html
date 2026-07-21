@@ -158,13 +158,18 @@
 
                         <td>{{ i.contact_no }}</td>
 
-                        <td>{{ i.password }}</td>
+                         <td>{{ i.password }}</td>
 
                         <td>
                              {{ i.gender }}
                         </td>
 
                         <td>{{ i.dob }}</td>
+                        <td> <a href="{% url 'details_review' i.emailaddress %}"
+   class="btn btn-outline-danger btn-sm">
+    View
+</a>
+                        </td>
 
                        
 

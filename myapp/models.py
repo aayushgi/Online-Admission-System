@@ -33,7 +33,7 @@ class tbl_student(models.Model):
     f_name=models.CharField(max_length=255,null=True)
     m_name=models.CharField(max_length=255,null=True)
     address=models.CharField(max_length=500,null=True)
-    aadhar_no=models.IntegerField(max_length=12,blank=True,null=True)
+    aadhar_no=models.IntegerField(blank=True,null=True)
     aadhar_pic=models.FileField(upload_to='student_documents',null=True)
     Session=models.CharField(max_length=50,null=True)
     course=models.CharField(max_length=500,null=True)

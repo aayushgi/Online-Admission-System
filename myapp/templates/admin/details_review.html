@@ -1,0 +1,66 @@
+{% extends 'admin/adminlayout.html' %}
+
+{% block admin %}
+
+<h2>{{ student.name }}</h2>
+
+<table class="table table-bordered">
+
+<tr>
+    <th>Profile Photo</th>
+    <td>
+        {% if student.profile_pic %}
+            <img src="{{ student.profile_pic.url }}" width="150">
+        {% else %}
+            Not Uploaded
+        {% endif %}
+    </td>
+</tr>
+
+<tr>
+    <th>Aadhar Card</th>
+    <td>
+        {% if student.addhar_pic %}
+            <a href="{{ student.aadhar_pic.url }}" target="_blank">View</a>
+        {% else %}
+            Not Uploaded
+        {% endif %}
+    </td>
+</tr>
+
+<tr>
+    <th>High School Marksheet</th>
+    <td>
+        {% if student.hs_marksheet %}
+            <a href="{{ student.hs_marksheet.url }}" target="_blank">View</a>
+        {% else %}
+            Not Uploaded
+        {% endif %}
+    </td>
+</tr>
+
+<tr>
+    <th>Intermediate Marksheet</th>
+    <td>
+        {% if student.inter_marksheet %}
+            <a href="{{ student.inter_marksheet.url }}" target="_blank">View</a>
+        {% else %}
+            Not Uploaded
+        {% endif %}
+    </td>
+</tr>
+
+<tr>
+    <th>Signature</th>
+    <td>
+        {% if student.sign %}
+            <img src="{{ student.sign.url }}" width="150">
+        {% else %}
+            Not Uploaded
+        {% endif %}
+    </td>
+</tr>
+
+</table>
+
+{% endblock %}
