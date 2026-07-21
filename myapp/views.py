@@ -266,7 +266,7 @@ def apply1(request):
     data.Session=Session
     data.course=course
     data.save()
-
+    return redirect('apply2')
     context={
         'ab':ab,#this is for course
         'ad':ad,#this is for session
@@ -278,16 +278,34 @@ def apply1(request):
     
 
 def apply2(request):
-    email=request.session.get('studentid')
-    data=tbl_student.objects.filter(emailaddress=email).first()
-    context={
-        'data':data,
-        'student':data
-    }
-    return render(request,'student/apply2.html',context)
+    sid=request.session.get('studentid')
+    data=tbl_student.objects.get(emailaddress=sid)
+    if request.method == 'POST':
+        hs_percentage=request.POST.get('hs_percentage')
+        hs_marksheet=request.FILES.get('hs_marksheet')
+        inter_percentage=request.POST.get('inter_percentage')
+        inter_marksheet=request.FILES.get('inter_marksheet')
+        addhar_pic=request.FILES.get('addhar_pic')
+        profile_pic=request.FILES.get('profile_pic')
+        sign=request.FILES.get('sign')
+    #set the data on model
+        data.hs_percentage=hs_percentage
+        data.hs_marksheet=hs_marksheet
+        data.inter_percentage=inter_percentage
+        data.inter_marksheet=inter_marksheet
+        data.addhar_pic=addhar_pic
+        data.profile_pic=profile_pic
+        data.sign=sign
+        data.application_status='DV'
+        data.save()
+        return redirect('studentdash')
+    return render(request,'student/apply2.html')
 
 
 
 def studentlogout(request):
     request.session.flush()
     return redirect('student_login')
+
+
+    

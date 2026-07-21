@@ -134,7 +134,7 @@
 
                 <thead>
                     <tr>
-                       
+                       <th>sno</th>
                         
                         <th>Student Name</th>
                         <th>Email</th>
@@ -142,6 +142,7 @@
                         <th>Password</th>
                         <th>Gender</th>
                         <th>DOB</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -150,7 +151,7 @@
                     {% for i in ab %}
 
                     <tr>
-
+                        <td>{{i.sid}}</td>
                         <td>{{ i.name }}</td>
 
                         <td>{{ i.emailaddress }}</td>
