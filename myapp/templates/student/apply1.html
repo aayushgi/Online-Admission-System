@@ -7,8 +7,7 @@
     <div class="card shadow-lg border-0 rounded-4">
 
         <!-- Header -->
-        <div class="card-header text-white p-4 border-0"
-             style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
+        <div class="card-header text-white p-4 border-0" style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
 
             <h2 class="mb-1 fw-bold text-center">
                 <i class="bi bi-person-vcard-fill"></i>
@@ -93,7 +92,8 @@
 
                 <div class="col-md-6">
                     <label class="form-label">Aadhaar Number</label>
-                    <input type="text" maxlength="12" class="form-control" name="aadhaar_no" value="{{data.aadhaar_no}}">
+                    <input type="text" maxlength="12" class="form-control" name="aadhar_no"
+                        value="{{data.aadhar_no}}">
                 </div>
 
                 <div class="col-md-6">
@@ -147,17 +147,14 @@
                 <div class="col-md-6">
 
                     <label class="form-label">Session</label>
-
                     <select class="form-select" name="session">
-
-                        <option value="">-- Select Session --</option>
+                        <option value="">Select Session</option>
 
                         {% for i in ad %}
-                        <option value="{{i.session}}">
-                            {{i.session}}
+                        <option value="{{ i.session_name }}">
+                            {{ i.session_name }}
                         </option>
                         {% endfor %}
-
                     </select>
 
                 </div>
@@ -165,17 +162,14 @@
                 <div class="col-md-6">
 
                     <label class="form-label">Course</label>
-
                     <select class="form-select" name="course">
-
-                        <option value="">-- Select Course --</option>
+                        <option value="">Select Course</option>
 
                         {% for i in ab %}
-                        <option value="{{i.course}}">
-                            {{i.course}}
+                        <option value="{{ i.course_name }}">
+                            {{ i.course_name }}
                         </option>
                         {% endfor %}
-
                     </select>
 
                 </div>
@@ -185,7 +179,7 @@
             <div class="text-end mt-5">
 
                 <button class="btn btn-lg px-5 text-white fw-bold"
-                        style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
+                    style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
 
                     <i class="bi bi-arrow-right-circle-fill"></i>
                     Save & Continue
@@ -201,40 +195,38 @@
 </form>
 
 <style>
+    .card {
+        border-radius: 18px;
+    }
 
-.card{
-    border-radius:18px;
-}
+    .form-control,
+    .form-select {
+        height: 48px;
+        border-radius: 10px;
+    }
 
-.form-control,
-.form-select{
-    height:48px;
-    border-radius:10px;
-}
+    textarea.form-control {
+        height: auto;
+    }
 
-textarea.form-control{
-    height:auto;
-}
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #18b9aa;
+        box-shadow: 0 0 8px rgba(24, 185, 170, .25);
+    }
 
-.form-control:focus,
-.form-select:focus{
-    border-color:#18b9aa;
-    box-shadow:0 0 8px rgba(24,185,170,.25);
-}
+    .form-label {
+        font-weight: 600;
+        color: #0b3f49;
+    }
 
-.form-label{
-    font-weight:600;
-    color:#0b3f49;
-}
+    .card-header {
+        border-radius: 18px 18px 0 0 !important;
+    }
 
-.card-header{
-    border-radius:18px 18px 0 0 !important;
-}
-
-hr{
-    opacity:.15;
-}
-
+    hr {
+        opacity: .15;
+    }
 </style>
 
 {% endblock %}

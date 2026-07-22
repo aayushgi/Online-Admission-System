@@ -52,6 +52,8 @@ class tbl_student(models.Model):
     payment_id=models.CharField(max_length=100,null=True,blank=True)
 
     payment_date=models.DateTimeField(null=True,blank=True)
+    step1_completed = models.BooleanField(default=False)
+    step2_completed = models.BooleanField(default=False)
 
 class tbl_payment(models.Model):
 

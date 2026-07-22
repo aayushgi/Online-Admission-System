@@ -1,124 +1,275 @@
 {% extends 'admin/adminlayout.html' %}
 {% block admin %}
+<div class="row align-items-center mb-4">
 
-<h2 class="mb-3 mt-4 border shadow card text-center">Student Detail</h2>
+    <div class="col-md-2 text-center">
 
-<style>
-    th,
-    td {
-        white-space: nowrap;
-        vertical-align: middle;
-    }
+        {% if student.profile_pic %}
+        <div class="card shadow border-0 p-2">
 
-    img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-    }
-</style>
+            <img src="{{ student.profile_pic.url }}" class="rounded" style="height:180px;object-fit:cover;">
 
-<div class="container-fluid">
-    <div class="table-responsive card shadow">
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>NAME</th>
-                    <th>FATHER NAME</th>
-                    <th>MOTHER NAME</th>
-                    <th>ADDRESS</th>
-                    <th>AADHAR NO</th>
-                    <th>AADHAR PIC</th>
-                    <th>PROFILE PICTURE</th>
-                    <th>SESSION</th>
-                    <th>COURSE</th>
-                    <th>10th %</th>
-                    <th>10th MARKSHEET</th>
-                    <th>12th %</th>
-                    <th>12th MARKSHEET</th>
-                    <th>SIGNATURE</th>
-                <th>Stauts</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        </div>
+        {% else %}
+        <div class="border rounded d-flex justify-content-center align-items-center" style="width:130px;height:150px;">
+            Photo
+        </div>
+        {% endif %}
 
-            <tbody>
-                <tr>
-                    <td>{{ student.sid }}</td>
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.f_name }}</td>
-                    <td>{{ student.m_name }}</td>
-                    <td>{{ student.address }}</td>
-                    <td>{{ student.aadhar_no }}</td>
-
-                    <td>
-                        {% if student.aadhar_pic %}
-                            <a href="{{ student.aadhar_pic.url }}"
-                        style="height: 100px; width: 100px;"
-                            target="_blank">
-                                View
-                            </a>
-                        {% else %}
-                            Not Uploaded
-                        {% endif %}
-                    </td>
-
-                    <td>
-                        {% if student.profile_pic %}
-                            <img src="{{ student.profile_pic.url }}" style="height: 100px; width: 100px;" alt="Profile">
-                        {% else %}
-                            Not Uploaded
-                        {% endif %}
-                    </td>
-
-                    <td>{{ student.session }}</td>
-                    <td>{{ student.course }}</td>
-
-                    <td>{{ student.hs_percentage }}</td>
-
-                    <td>
-                        {% if student.hs_marksheet %}
-                            <a href="{{ student.hs_marksheet.url }}" style="height: 100px; width: 100px;" target="_blank">
-                                View
-                            </a>
-                        {% else %}
-                            Not Uploaded
-                        {% endif %}
-                    </td>
-
-                    <td>{{ student.inter_percentage }}</td>
-
-                    <td>
-                        {% if student.inter_marksheet %}
-                            <a href="{{ student.inter_marksheet.url }}" target="_blank">
-                                View
-                            </a>
-                        {% else %}
-                            Not Uploaded
-                        {% endif %}
-                    </td>
-
-                    <td>
-                        {% if student.sign %}
-                            <a href="{{ student.sign.url }}" target="_blank">
-                                View
-                            </a>
-                        {% else %}
-                            Not Uploaded
-                        {% endif %}
-                    </td>
-
-            <td>{{student.application_status}}</td>
-                    <td>
-                         <a href="{% url 'verify' student.emailaddress %}"
-                               class="btn btn-outline-success btn-sm ">
-                                verify
-                            </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
+
+    <div class="col-md-10">
+        <div class="card shadow-lg border-0 mb-4">
+
+            <div class="card-body text-center text-white"
+                style="background:linear-gradient(135deg,#0d6efd,#0dcaf0); border-radius:12px;">
+
+                <h2 class="fw-bold mb-1">
+                    ONLINE ADMISSION SYSTEM
+                </h2>
+
+                <h5 class="mb-0">
+                    STUDENT APPLICATION FORM
+                </h5>
+
+            </div>
+
+        </div>
+
+        <h5 class="text-center mb-4">
+            STUDENT APPLICATION FORM
+        </h5>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label fw-bold">Application ID</label>
+                <input type="text" class="form-control" value="{{ student.sid }}" readonly>
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="fw-bold">Payment Status</label>
+
+                <br>
+
+                {% if student.fees_status == "Paid" %}
+
+                <span class="badge rounded-pill bg-success fs-6 px-4 py-2">
+                    💰 PAID
+                </span>
+
+                {% elif student.fees_status == "Unpaid" %}
+
+                <span class="badge rounded-pill bg-danger fs-6 px-4 py-2">
+                    ❌ UNPAID
+                </span>
+
+                {% else %}
+
+                <span class="badge rounded-pill bg-warning text-dark fs-6 px-4 py-2">
+                    ⏳ PENDING
+                </span>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="card mt-3 shadow-sm">
+
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Student Information</h5>
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="fw-bold">Student Name</label>
+                <input type="text" class="form-control" value="{{ student.name }}" readonly>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="fw-bold">Father Name</label>
+                <input type="text" class="form-control" value="{{ student.f_name }}" readonly>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="fw-bold">Mother Name</label>
+                <input type="text" class="form-control" value="{{ student.m_name }}" readonly>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="fw-bold">Session</label>
+                <input type="text" class="form-control" value="{{ student.Session }}" readonly>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label class="fw-bold">Address</label>
+                <textarea class="form-control" rows="3" readonly>{{ student.address }}</textarea>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="fw-bold">Aadhaar Number</label>
+                <input type="text" class="form-control" value="{{ student.aadhar_no }}" readonly>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="fw-bold">Course</label>
+                <input type="text" class="form-control" value="{{ student.course }}" readonly>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="fw-bold">10th Percentage</label>
+                <input type="text" class="form-control" value="{{ student.hs_percentage }}" readonly>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="fw-bold">12th Percentage</label>
+                <input type="text" class="form-control" value="{{ student.inter_percentage }}" readonly>
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="fw-bold">Application Status</label>
+
+                <br>
+
+                {% if student.application_status == "Approved" %}
+
+                <span class="badge rounded-pill bg-success fs-6 px-4 py-2">
+                    ✅ APPROVED
+                </span>
+
+                {% elif student.application_status == "DV" %}
+
+                <span class="badge rounded-pill bg-warning text-dark fs-6 px-4 py-2">
+                    📄 DOCUMENT VERIFICATION
+                </span>
+
+                {% elif student.application_status == "Rejected" %}
+
+                <span class="badge rounded-pill bg-danger fs-6 px-4 py-2">
+                    ❌ REJECTED
+                </span>
+
+                {% else %}
+
+                <span class="badge rounded-pill bg-secondary fs-6 px-4 py-2">
+                    ⏳ PENDING
+                </span>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="card mt-3 shadow-sm">
+
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Documents</h5>
+    </div>
+
+    <div class="card-body">
+
+        <div class="row text-center">
+
+            <div class="col-md-4">
+
+                <label class="fw-bold mb-2">Profile Picture</label><br>
+
+                {% if student.profile_pic %}
+                <img src="{{ student.profile_pic.url }}" class="img-thumbnail" style="width:170px;height:180px;">
+                {% else %}
+                <p class="text-danger">Not Uploaded</p>
+                {% endif %}
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="fw-bold mb-2">Aadhaar Card</label><br>
+
+                {% if student.aadhar_pic %}
+                <a href="{{ student.aadhar_pic.url }}" target="_blank" class="btn btn-outline-primary">
+                    View Aadhaar
+                </a>
+                {% else %}
+                <p class="text-danger">Not Uploaded</p>
+                {% endif %}
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="fw-bold mb-2">Signature</label><br>
+
+                {% if student.sign %}
+                <img src="{{ student.sign.url }}" class="img-thumbnail" style="width:170px;height:70px;">
+                {% else %}
+                <p class="text-danger">Not Uploaded</p>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="d-flex justify-content-between mt-4 no-print">
+
+            <a href="{% url 'verify' student.emailaddress %}" class="btn btn-success px-4">
+                Verify
+            </a>
+
+            <button onclick="window.print()" class="btn btn-primary px-4">
+                Print Form
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
+<style>
+    .form-control,
+    textarea {
+        background: #fff !important;
+        font-weight: 500;
+    }
+
+    .card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        font-size: 18px;
+    }
+
+    @media print {
+
+        .no-print {
+            display: none !important;
+        }
+
+        body {
+            background: white !important;
+        }
+
+        .card {
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+    }
+</style>
 {% endblock %}

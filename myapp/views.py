@@ -247,45 +247,68 @@ def studentdash(request):
     }
     return render(request, 'student/studentdash.html',context)
 
-
 def apply1(request):
-    ab=tbl_course.objects.all()
-    ad=session.objects.all()
+    ab = tbl_course.objects.all()
+    ad = session.objects.all()
 
-    
-    sid=request.session.get('studentid')
-    data=tbl_student.objects.filter(emailaddress=sid).first()
-    
-    #dataget
+    sid = request.session.get('studentid')
 
-    f_name=request.POST.get('f_name')
-    m_name=request.POST.get('m_name')
-    address=request.POST.get('address')
-    addhar_no=request.POST.get('addhar_no')
-    Session=request.POST.get('session')
-    course=request.POST.get('cousre')
+    if not sid:
+        return redirect('student_login')
 
-    #set data viya model
-    data.f_name=f_name
-    data.m_name=m_name
-    data.addhar_no=addhar_no
-    data.Session=Session
-    data.course=course
-    data.save()
-    return redirect('apply2')
-    context={
-        'ab':ab,#this is for course
-        'ad':ad,#this is for session
-        'data':data,
-        'student':data
+    data = tbl_student.objects.filter(emailaddress=sid).first()
+
+    if data.step1_completed:
+        messages.warning(request, "You have already completed Step 1.")
+        return redirect("apply2")
+
+    if request.method == "POST":
+
+        data.f_name = request.POST.get('f_name')
+        data.m_name = request.POST.get('m_name')
+        data.address = request.POST.get('address')
+        data.aadhar_no = request.POST.get('aadhar_no')
+
+        # Session Save
+        data.Session = request.POST.get("session")
+
+        # Course Save
+        selected_course = request.POST.get("course")
+
+        course = tbl_course.objects.filter(
+            course_name=selected_course
+        ).first()
+
+        if course:
+            data.course = course.course_name
+            data.course_duration = course.duration
+            data.fees = course.fees
+
+        data.step1_completed = True
+        data.save()
+
+        messages.success(request, "Step 1 Completed Successfully")
+
+        return redirect("apply2")
+
+    context = {
+        'ab': ab,
+        'ad': ad,
+        'data': data,
+        'student': data,
     }
-    sid=request.session.get('studentid')
-    return render(request, 'student/apply1.html',context)
-    
+
+    return render(request, 'student/apply1.html', context)    
 
 def apply2(request):
     sid=request.session.get('studentid')
     data=tbl_student.objects.get(emailaddress=sid)
+    if not data.step1_completed:
+        messages.error(request, "Please complete Step 1 first.")
+        return redirect("apply1")
+    if data.step2_completed:
+        messages.warning(request, "Step 2 already completed.")
+        return redirect("student_fees_payment")
     if request.method == 'POST':
         hs_percentage=request.POST.get('hs_percentage')
         hs_marksheet=request.FILES.get('hs_marksheet')
@@ -302,9 +325,10 @@ def apply2(request):
         data.aadhar_pic=aadhar_pic
         data.profile_pic=profile_pic
         data.sign=sign
+        data.step2_completed = True
         data.application_status='DV'
         data.save()
-        return redirect('studentdash')
+        return redirect("student_fees_payment")
     return render(request,'student/apply2.html')
 
 
