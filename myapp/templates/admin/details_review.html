@@ -1,66 +1,124 @@
 {% extends 'admin/adminlayout.html' %}
-
 {% block admin %}
 
-<h2>{{ student.name }}</h2>
+<h2 class="mb-3 mt-4 border shadow card text-center">Student Detail</h2>
 
-<table class="table table-bordered">
+<style>
+    th,
+    td {
+        white-space: nowrap;
+        vertical-align: middle;
+    }
 
-<tr>
-    <th>Profile Photo</th>
-    <td>
-        {% if student.profile_pic %}
-            <img src="{{ student.profile_pic.url }}" width="150">
-        {% else %}
-            Not Uploaded
-        {% endif %}
-    </td>
-</tr>
+    img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+</style>
 
-<tr>
-    <th>Aadhar Card</th>
-    <td>
-        {% if student.addhar_pic %}
-            <a href="{{ student.aadhar_pic.url }}" target="_blank">View</a>
-        {% else %}
-            Not Uploaded
-        {% endif %}
-    </td>
-</tr>
+<div class="container-fluid">
+    <div class="table-responsive card shadow">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>FATHER NAME</th>
+                    <th>MOTHER NAME</th>
+                    <th>ADDRESS</th>
+                    <th>AADHAR NO</th>
+                    <th>AADHAR PIC</th>
+                    <th>PROFILE PICTURE</th>
+                    <th>SESSION</th>
+                    <th>COURSE</th>
+                    <th>10th %</th>
+                    <th>10th MARKSHEET</th>
+                    <th>12th %</th>
+                    <th>12th MARKSHEET</th>
+                    <th>SIGNATURE</th>
+                <th>Stauts</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-<tr>
-    <th>High School Marksheet</th>
-    <td>
-        {% if student.hs_marksheet %}
-            <a href="{{ student.hs_marksheet.url }}" target="_blank">View</a>
-        {% else %}
-            Not Uploaded
-        {% endif %}
-    </td>
-</tr>
+            <tbody>
+                <tr>
+                    <td>{{ student.sid }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.f_name }}</td>
+                    <td>{{ student.m_name }}</td>
+                    <td>{{ student.address }}</td>
+                    <td>{{ student.aadhar_no }}</td>
 
-<tr>
-    <th>Intermediate Marksheet</th>
-    <td>
-        {% if student.inter_marksheet %}
-            <a href="{{ student.inter_marksheet.url }}" target="_blank">View</a>
-        {% else %}
-            Not Uploaded
-        {% endif %}
-    </td>
-</tr>
+                    <td>
+                        {% if student.aadhar_pic %}
+                            <a href="{{ student.aadhar_pic.url }}"
+                        style="height: 100px; width: 100px;"
+                            target="_blank">
+                                View
+                            </a>
+                        {% else %}
+                            Not Uploaded
+                        {% endif %}
+                    </td>
 
-<tr>
-    <th>Signature</th>
-    <td>
-        {% if student.sign %}
-            <img src="{{ student.sign.url }}" width="150">
-        {% else %}
-            Not Uploaded
-        {% endif %}
-    </td>
-</tr>
+                    <td>
+                        {% if student.profile_pic %}
+                            <img src="{{ student.profile_pic.url }}" style="height: 100px; width: 100px;" alt="Profile">
+                        {% else %}
+                            Not Uploaded
+                        {% endif %}
+                    </td>
 
-</table>
+                    <td>{{ student.session }}</td>
+                    <td>{{ student.course }}</td>
+
+                    <td>{{ student.hs_percentage }}</td>
+
+                    <td>
+                        {% if student.hs_marksheet %}
+                            <a href="{{ student.hs_marksheet.url }}" style="height: 100px; width: 100px;" target="_blank">
+                                View
+                            </a>
+                        {% else %}
+                            Not Uploaded
+                        {% endif %}
+                    </td>
+
+                    <td>{{ student.inter_percentage }}</td>
+
+                    <td>
+                        {% if student.inter_marksheet %}
+                            <a href="{{ student.inter_marksheet.url }}" target="_blank">
+                                View
+                            </a>
+                        {% else %}
+                            Not Uploaded
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if student.sign %}
+                            <a href="{{ student.sign.url }}" target="_blank">
+                                View
+                            </a>
+                        {% else %}
+                            Not Uploaded
+                        {% endif %}
+                    </td>
+
+            <td>{{student.application_status}}</td>
+                    <td>
+                         <a href="{% url 'verify' student.emailaddress %}"
+                               class="btn btn-outline-success btn-sm ">
+                                verify
+                            </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 {% endblock %}

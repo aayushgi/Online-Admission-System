@@ -5,6 +5,10 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+import uuid
+import hashlib
+
 
 # Create your views here.
 def home(request):
@@ -251,6 +255,7 @@ def apply1(request):
     
     sid=request.session.get('studentid')
     data=tbl_student.objects.filter(emailaddress=sid).first()
+    
     #dataget
 
     f_name=request.POST.get('f_name')
@@ -318,3 +323,167 @@ def details_review(request, emailaddress):
             'student': student
         }
     )
+
+def reviewstudent(request):
+    ab=tbl_student.objects.get(emailaddress=emailaddress)
+    return render(request,'admin/showstudent.html',{'ab':ab})
+
+def verify(request,emailaddress):
+    student=tbl_student.objects.get(emailaddress=emailaddress)
+    student.application_status="Approved"
+    student.save()
+    return redirect('details_review',emailaddress=emailaddress)
+
+
+
+def get_login_student(request):
+    sid = request.session.get('studentid')
+
+    if sid:
+        return tbl_student.objects.filter(emailaddress=sid).first()
+
+    return None
+
+
+def student_fees_payment(request):
+
+    student = get_login_student(request)
+
+    if not student:
+        return redirect('student_login')
+
+    return render(request, 'student/student_fees_payment.html', {
+        'student': student
+    })
+
+
+def payu_payment(request):
+
+    student = get_login_student(request)
+
+    if not student:
+        return redirect("student_login")
+
+    if student.application_status != "Approved":
+        messages.error(request, "Your documents are not approved yet.")
+        return redirect("student_fees_payment")
+
+    if student.fees_status == "Paid":
+        messages.success(request, "Fees already paid.")
+        return redirect("student_enrolled_course")
+
+    # Get Course Details
+    course = tbl_course.objects.filter(course_name=student.course).first()
+
+    if course:
+        amount = str(course.fees)
+        productinfo = course.course_name
+
+        # Student table me bhi update kar do
+        student.fees = course.fees
+        student.save()
+
+    else:
+        # Dummy values for testing
+        amount = "1.00"
+        productinfo = "Admission Fee"
+
+    key = settings.PAYU_KEY
+    salt = settings.PAYU_SALT
+    payu_url = settings.PAYU_URL
+
+    txnid = "TXN" + uuid.uuid4().hex[:10].upper()
+
+    firstname = student.name
+    email = student.emailaddress
+    phone = str(student.contact_no)
+
+    surl = request.build_absolute_uri("/payment_success/")
+    furl = request.build_absolute_uri("/payment_failure/")
+
+    hash_string = (
+        f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||||||||{salt}"
+    )
+
+    hashh = hashlib.sha512(hash_string.encode()).hexdigest().lower()
+
+    student.payment_id = txnid
+    student.fees_status = "Pending"
+    student.save()
+
+    context = {
+        "payu_url": payu_url,
+        "key": key,
+        "txnid": txnid,
+        "amount": amount,
+        "productinfo": productinfo,
+        "firstname": firstname,
+        "email": email,
+        "phone": phone,
+        "surl": surl,
+        "furl": furl,
+        "hash": hashh,
+    }
+
+    return render(request, "student/payu_redirect.html", context)
+
+@csrf_exempt
+def payment_success(request):
+
+    txnid = request.POST.get("txnid")
+    mihpayid = request.POST.get("mihpayid")
+    status = request.POST.get("status")
+
+    student = tbl_student.objects.filter(payment_id=txnid).first()
+
+    if not student:
+        return redirect("student_login")
+
+    if status == "success":
+
+        student.fees_status = "Paid"
+        student.payment_date = datetime.now()
+
+        if mihpayid:
+            student.payment_id = mihpayid
+
+        student.save()
+
+        messages.success(request, "Payment Successful.")
+
+        return redirect("student_enrolled_course")
+
+    student.fees_status = "Failed"
+    student.save()
+
+    messages.error(request, "Payment Failed.")
+
+    return redirect("student_fees_payment")
+
+
+@csrf_exempt
+def payment_failure(request):
+
+    txnid = request.POST.get("txnid")
+
+    student = tbl_student.objects.filter(payment_id=txnid).first()
+
+    if student:
+        student.fees_status = "Failed"
+        student.save()
+
+    messages.error(request, "Payment Failed.")
+
+    return redirect("student_fees_payment")
+
+
+def student_enrolled_course(request):
+
+    student = get_login_student(request)
+
+    if not student:
+        return redirect("student_login")
+
+    return render(request, "student/student_enrolled_course.html", {
+        "student": student
+    })

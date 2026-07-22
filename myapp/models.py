@@ -46,4 +46,27 @@ class tbl_student(models.Model):
     sign=models.FileField(upload_to='student_documents',null=True)
     application_status=models.CharField(max_length=20,null=True)
     fees=models.IntegerField(null=True)
-    fees_status=models.CharField(max_length=20,null=True)
+
+    fees_status=models.CharField(max_length=20,default="Unpaid")
+
+    payment_id=models.CharField(max_length=100,null=True,blank=True)
+
+    payment_date=models.DateTimeField(null=True,blank=True)
+
+class tbl_payment(models.Model):
+
+    student_email = models.EmailField()
+
+    student_name = models.CharField(max_length=225)
+
+    course = models.CharField(max_length=200)
+
+    txnid = models.CharField(max_length=100)
+
+    payu_payment_id = models.CharField(max_length=100, null=True, blank=True)
+
+    amount = models.IntegerField()
+
+    payment_status = models.CharField(max_length=20)
+
+    payment_date = models.DateTimeField(auto_now_add=True)

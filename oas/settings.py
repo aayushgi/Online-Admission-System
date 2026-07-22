@@ -27,6 +27,11 @@ SECRET_KEY = 'django-insecure-t77r(x8w74wzzrrfli)2510g5@@gd10du&xr-e0haswt##zk2j
 DEBUG = True
 
 ALLOWED_HOSTS = []
+PAYU_KEY = 'ZKZdGZ'
+PAYU_SALT = 'DnnmITW7XQ8ZOeByYTBxVOuyctvKBTOB'
+PAYU_URL = 'https://test.payu.in/_payment'
+# Application definition
+
 
 
 # Application definition

@@ -28,4 +28,10 @@ urlpatterns=[
     path('apply2',apply2,name='apply2'),
     path('studentlogout',studentlogout,name='studentlogout'),
     path('details_review/<str:emailaddress>/', details_review, name='details_review'),
+    path('verify/<str:emailaddress>/',verify,name='verify'),
+    path('student_fees_payment/',student_fees_payment,name='student_fees_payment'),
+    path('payu_payment/', payu_payment, name='payu_payment'),
+    path('payment_success/', payment_success, name='payment_success'),
+    path('payment_failure/',payment_failure, name='payment_failure'),
+    path('student_enrolled_course/',student_enrolled_course, name='student_enrolled_course'),
 ] 
