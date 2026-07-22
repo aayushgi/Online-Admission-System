@@ -2,273 +2,55 @@
 
 
  {% block student %}
-<style>
-    /* Main Dashboard */
-    .dashboard-wrapper {
-        background-color: #eaf8f7;
-        min-height: 100vh;
-        padding: 30px;
-    }
-
-
-    /* ================= HEADER ================= */
-
-    .dashboard-header {
-        background-color: white;
-        border-radius: 20px;
-        padding: 25px 30px;
-        box-shadow: 0 8px 25px rgba(0, 90, 90, 0.08);
-    }
-
-    .dashboard-header h1 {
-        font-weight: 700;
-        color: #073b42;
-        margin-bottom: 5px;
-    }
-
-    .dashboard-header p {
-        color: #607477;
-        margin-bottom: 0;
-    }
-
-
-    /* Admin Profile */
-
-    .admin-profile {
-        background-color: #e1faf7;
-        padding: 10px 20px;
-        border-radius: 50px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .admin-profile-icon {
-        width: 50px;
-        height: 50px;
-        background-color: #119b91;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 22px;
-    }
-
-    .admin-profile h6 {
-        margin: 0;
-        color: #073b42;
-        font-weight: 700;
-    }
-
-    .admin-profile p {
-        margin: 0;
-        font-size: 14px;
-        color: #607477;
-    }
-
-
-    /* ================= STAT CARDS ================= */
-
-    .stat-card {
-        background-color: white;
-        border-radius: 20px;
-        padding: 30px;
-        min-height: 220px;
-        box-shadow: 0 8px 25px rgba(0, 90, 90, 0.08);
-        transition: 0.3s;
-    }
-
-    .stat-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(0, 90, 90, 0.15);
-    }
-
-
-    /* Card Icon */
-
-    .stat-icon {
-        width: 65px;
-        height: 65px;
-        border-radius: 18px;
-        background-color: #119b91;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
-
-
-    /* Card Number */
-
-    .stat-number {
-        font-size: 32px;
-        font-weight: 700;
-        color: #073b42;
-        margin-bottom: 5px;
-    }
-
-
-    /* Card Title */
-
-    .stat-title {
-        color: #607477;
-        font-size: 17px;
-        font-weight: 600;
-    }
-
-
-    /* ================= BOTTOM SECTION ================= */
-
-    .section-card {
-        background-color: white;
-        border-radius: 20px;
-        padding: 30px;
-        min-height: 330px;
-        box-shadow: 0 8px 25px rgba(0, 90, 90, 0.08);
-    }
-
-    .section-title {
-        color: #073b42;
-        font-weight: 700;
-        margin-bottom: 25px;
-    }
 
+ <div class="container-fluid mt-3">
 
-    /* Verification Box */
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
 
-    .verification-box {
-        background-color: #edfbfa;
-        border: 1px solid #c9ece8;
-        border-radius: 18px;
-        padding: 25px;
-        min-height: 140px;
-    }
+        <div class="card-body p-4"
+            style="background:linear-gradient(135deg,#0b3f49,#18b9aa); color:white;">
 
-    .verification-box h3 {
-        color: #078a80;
-        font-weight: 700;
-    }
+            <div class="row align-items-center">
 
-    .verification-box p {
-        color: #586d71;
-        font-weight: 600;
-        margin-bottom: 0;
-    }
+                <div class="col-md-8">
 
+                    <h1 class="fw-bold mb-2">
+                        Welcome,
+                        {{ student.name }}
+                        👋
+                    </h1>
 
-    /* ================= QUICK ACTIONS ================= */
+                    <p class="mb-3 fs-5">
 
-    .action-btn {
-        background-color: #f0f9f8;
-        border: 1px solid #cce8e5;
-        border-radius: 18px;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        text-decoration: none;
-        color: #073b42;
-        font-weight: 600;
-        min-height: 90px;
-        transition: 0.3s;
-    }
+                        Online Admission Portal
 
-    .action-btn:hover {
-        background-color: #e2f7f5;
-        color: #073b42;
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 90, 90, 0.10);
-    }
+                    </p>
 
+                    <span class="badge bg-light text-dark px-3 py-2">
 
-    /* Action Icon */
+                        <i class="bi bi-person-badge"></i>
 
-    .action-icon {
-        width: 50px;
-        height: 50px;
-        min-width: 50px;
-        border-radius: 15px;
-        background-color: #f5b942;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 22px;
-        color: #073b42;
-    }
+                        Application ID :
+                        {{ student.sid }}
 
+                    </span>
 
-    /* ================= RESPONSIVE ================= */
+                </div>
 
-    @media (max-width: 768px) {
+                <div class="col-md-4 text-center">
 
-        .dashboard-wrapper {
-            padding: 15px;
-        }
+                    {% if student.profile_pic %}
 
-        .dashboard-header {
-            padding: 20px;
-        }
+                    <img src="{{ student.profile_pic.url }}"
+                        class="rounded-circle border border-4 border-white shadow"
+                        style="width:140px;height:140px;object-fit:cover;">
 
-        .dashboard-header h1 {
-            font-size: 26px;
-        }
+                    {% else %}
 
-        .admin-profile {
-            margin-top: 20px;
-        }
+                    <i class="bi bi-person-circle"
+                        style="font-size:120px;"></i>
 
-        .stat-card {
-            min-height: 190px;
-        }
-
-        .section-card {
-            padding: 20px;
-        }
-
-    }
-</style>
-
-
-
-<div class="dashboard-wrapper">
-
-
-    <!-- ================= HEADER ================= -->
-
-    <div class="dashboard-header mb-4">
-
-        <div class="row align-items-center">
-
-            <!-- Left Side -->
-
-            <div class="col-md-8">
-
-                <h1>Student Dashboard</h1>
-
-                <p>
-                    Your admission summary and current status..
-                </p>
-
-            </div>
-
-
-            <!-- Right Side -->
-
-            <div class="col-md-4 d-flex justify-content-md-end">
-
-                <div class="admin-profile">
-
-                    <div class="admin-profile-icon">
-                        <i class="bi bi-person-check-fill"></i>
-                    </div>
-
-                    <div>
-                        <h6>User</h6>
-                        <p>Biotech Park</p>
-                    </div>
+                    {% endif %}
 
                 </div>
 
@@ -278,73 +60,41 @@
 
     </div>
 
+</div>
 
-
-    <!-- ================= TOP CARDS ================= -->
+<div class="container-fluid mt-4">
 
     <div class="row g-4">
 
+        <!-- Course -->
 
+        <div class="col-lg-3 col-md-6">
 
+            <div class="card border-0 shadow h-100 rounded-4 card-hover">
 
+                <div class="card-body">
 
-    <!-- ================= BOTTOM SECTION ================= -->
+                    <div class="d-flex justify-content-between">
 
-    <div class="row g-4 mt-3">
+                        <div>
 
+                            <small class="text-muted fw-bold">
+                                COURSE
+                            </small>
 
-        <!-- Verification Summary -->
+                            <h4 class="fw-bold mt-2">
+                                {{ student.course }}
+                            </h4>
 
-        <div class="col-lg-6">
+                        </div>
 
-            <div class="section-card">
+                        <div class="icon-box">
 
-                <h3 class="section-title">
-                    Verification Summary
-                </h3>
-
-
-                <div class="row g-3">
-
-
-                    <!-- Verified Students -->
-
-                    <div class="col-md-6">
-
-                        <div class="verification-box">
-
-                            <h3>
-                                {{ verified_students }}
-                            </h3>
-
-                            <p>
-                                Verified Students
-                            </p>
+                            <i class="bi bi-book-half"></i>
 
                         </div>
 
                     </div>
-
-
-
-                    <!-- Enrolled Students -->
-
-                    <div class="col-md-6">
-
-                        <div class="verification-box">
-
-                            <h3>
-                                {{ enrolled_students }}
-                            </h3>
-
-                            <p>
-                                Enrolled / Paid
-                            </p>
-
-                        </div>
-
-                    </div>
-
 
                 </div>
 
@@ -352,100 +102,35 @@
 
         </div>
 
+        <!-- Session -->
 
+        <div class="col-lg-3 col-md-6">
 
-        <!-- ================= QUICK ACTIONS ================= -->
+            <div class="card border-0 shadow h-100 rounded-4 card-hover">
 
-        <div class="col-lg-6">
+                <div class="card-body">
 
-            <div class="section-card">
+                    <div class="d-flex justify-content-between">
 
-                <h3 class="section-title">
-                    Quick Actions
-                </h3>
+                        <div>
 
+                            <small class="text-muted fw-bold">
+                                SESSION
+                            </small>
 
-                <div class="row g-3">
+                            <h4 class="fw-bold mt-2">
+                                {{ student.Session }}
+                            </h4>
 
+                        </div>
 
-                    <!-- Add Student -->
+                        <div class="icon-box bg-primary">
 
-                    <div class="col-md-6">
+                            <i class="bi bi-calendar3"></i>
 
-                        <a href="{% url 'addstudent' %}" class="action-btn">
-
-                            <div class="action-icon">
-                                <i class="bi bi-person-plus-fill"></i>
-                            </div>
-
-                            <span>
-                                Add Student
-                            </span>
-
-                        </a>
+                        </div>
 
                     </div>
-
-
-
-                    <!-- Verify Documents -->
-
-                    <div class="col-md-6">
-
-                        <a href="#" class="action-btn">
-
-                            <div class="action-icon">
-                                <i class="bi bi-file-earmark-check-fill"></i>
-                            </div>
-
-                            <span>
-                                Verify Documents
-                            </span>
-
-                        </a>
-
-                    </div>
-
-
-
-                    <!-- Add Course -->
-
-                    <div class="col-md-6">
-
-                        <a href="{% url 'addcourse' %}" class="action-btn">
-
-                            <div class="action-icon">
-                                <i class="bi bi-journal-plus"></i>
-                            </div>
-
-                            <span>
-                                Add Course
-                            </span>
-
-                        </a>
-
-                    </div>
-
-
-
-                    <!-- Fees -->
-
-                    <div class="col-md-6">
-
-                        <a href="#" class="action-btn">
-
-                            <div class="action-icon">
-                                <i class="bi bi-currency-rupee"></i>
-                            </div>
-
-                            <span>
-                                Fees / Enrolled
-                            </span>
-
-                        </a>
-
-                    </div>
-
 
                 </div>
 
@@ -453,28 +138,474 @@
 
         </div>
 
+        <!-- Verification -->
 
-    </div>
-    <!-- ================= RECENT ACTIVITY ================= -->
+        <div class="col-lg-3 col-md-6">
 
-    <div class="row mt-4">
+            <div class="card border-0 shadow h-100 rounded-4 card-hover">
 
-        <div class="col-12">
+                <div class="card-body">
 
-            <div class="section-card">
+                    <div class="d-flex justify-content-between">
 
-                <h3 class="section-title">
-                    Recent Activity
-                </h3>
+                        <div>
 
-               
+                            <small class="text-muted fw-bold">
+                                VERIFICATION
+                            </small>
+
+                            <h5 class="fw-bold mt-2">
+
+                                {% if student.application_status == "Approved" %}
+
+                                    <span class="text-success">
+
+                                        Approved
+
+                                    </span>
+
+                                {% elif student.application_status == "DV" %}
+
+                                    <span class="text-warning">
+
+                                        Pending
+
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="text-danger">
+
+                                        Waiting
+
+                                    </span>
+
+                                {% endif %}
+
+                            </h5>
+
+                        </div>
+
+                        <div class="icon-box bg-success">
+
+                            <i class="bi bi-patch-check"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
 
+        <!-- Payment -->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card border-0 shadow h-100 rounded-4 card-hover">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between">
+
+                        <div>
+
+                            <small class="text-muted fw-bold">
+                                PAYMENT
+                            </small>
+
+                            <h5 class="fw-bold mt-2">
+
+                                {% if student.fees_status == "Paid" %}
+
+                                    <span class="text-success">
+
+                                        Paid
+
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="text-danger">
+
+                                        Unpaid
+
+                                    </span>
+
+                                {% endif %}
+
+                            </h5>
+
+                        </div>
+
+                        <div class="icon-box bg-warning">
+
+                            <i class="bi bi-cash-stack"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
+</div>
+<div class="container-fluid mt-4">
 
+    <div class="card border-0 shadow rounded-4">
+
+        <div class="card-header text-white fw-bold"
+            style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
+
+            <i class="bi bi-bar-chart-steps"></i>
+
+            Admission Progress
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="progress mb-4" style="height:12px;">
+
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+
+                    {% if student.fees_status == "Paid" %}
+
+                        style="width:100%"
+
+                    {% elif student.application_status == "Approved" %}
+
+                        style="width:80%"
+
+                    {% elif student.step2_completed %}
+
+                        style="width:60%"
+
+                    {% elif student.step1_completed %}
+
+                        style="width:40%"
+
+                    {% else %}
+
+                        style="width:20%"
+
+                    {% endif %}
+
+                ></div>
+
+            </div>
+
+            <div class="row text-center">
+
+                <div class="col">
+
+                    {% if student.sid %}
+                        <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                    {% else %}
+                        <i class="bi bi-circle fs-2"></i>
+                    {% endif %}
+
+                    <p class="mt-2 fw-bold">
+                        Registered
+                    </p>
+
+                </div>
+
+                <div class="col">
+
+                    {% if student.step1_completed %}
+                        <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                    {% else %}
+                        <i class="bi bi-circle fs-2"></i>
+                    {% endif %}
+
+                    <p class="mt-2 fw-bold">
+                        Step 1
+                    </p>
+
+                </div>
+
+                <div class="col">
+
+                    {% if student.step2_completed %}
+                        <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                    {% else %}
+                        <i class="bi bi-circle fs-2"></i>
+                    {% endif %}
+
+                    <p class="mt-2 fw-bold">
+                        Step 2
+                    </p>
+
+                </div>
+
+                <div class="col">
+
+                    {% if student.application_status == "Approved" %}
+                        <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                    {% else %}
+                        <i class="bi bi-circle fs-2"></i>
+                    {% endif %}
+
+                    <p class="mt-2 fw-bold">
+                        Verified
+                    </p>
+
+                </div>
+
+                <div class="col">
+
+                    {% if student.fees_status == "Paid" %}
+                        <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                    {% else %}
+                        <i class="bi bi-circle fs-2"></i>
+                    {% endif %}
+
+                    <p class="mt-2 fw-bold">
+                        Paid
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="container-fluid mt-4">
+
+    <div class="row">
+
+        <!-- Quick Actions -->
+
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow rounded-4">
+
+                <div class="card-header text-white fw-bold"
+                    style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
+
+                    <i class="bi bi-bell-fill"></i>
+
+                    Latest Updates
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="alert alert-success">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Welcome to Online Admission System.
+
+                    </div>
+
+                    {% if student.step1_completed %}
+
+                    <div class="alert alert-info">
+
+                        <i class="bi bi-person-check-fill"></i>
+
+                        Personal Information Submitted Successfully.
+
+                    </div>
+
+                    {% endif %}
+
+                    {% if student.step2_completed %}
+
+                    <div class="alert alert-primary">
+
+                        <i class="bi bi-file-earmark-check-fill"></i>
+
+                        Educational Information Submitted Successfully.
+
+                    </div>
+
+                    {% endif %}
+
+                    {% if student.application_status == "Approved" %}
+
+                    <div class="alert alert-success">
+
+                        <i class="bi bi-patch-check-fill"></i>
+
+                        Your Documents have been Verified.
+
+                    </div>
+
+                    {% elif student.application_status == "DV" %}
+
+                    <div class="alert alert-warning">
+
+                        <i class="bi bi-hourglass-split"></i>
+
+                        Documents are under verification.
+
+                    </div>
+
+                    {% endif %}
+
+                    {% if student.fees_status == "Paid" %}
+
+                    <div class="alert alert-success">
+
+                        <i class="bi bi-cash-stack"></i>
+
+                        Admission Fee Paid Successfully.
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+       
+
+        <!-- Student Summary -->
+
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow rounded-4">
+
+                <div class="card-header text-white fw-bold"
+                    style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
+
+                    Student Summary
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        <i class="bi bi-person-fill"></i>
+
+                        {{ student.name }}
+                    </p>
+
+                    <hr>
+
+                    <p>
+                        <i class="bi bi-envelope-fill"></i>
+
+                        {{ student.emailaddress }}
+                    </p>
+
+                    <hr>
+
+                    <p>
+                        <i class="bi bi-book-fill"></i>
+
+                        {{ student.course }}
+                    </p>
+
+                    <hr>
+
+                    <p>
+                        <i class="bi bi-calendar-event-fill"></i>
+
+                        {{ student.Session }}
+                    </p>
+
+                    <hr>
+
+                    <p>
+
+                        <i class="bi bi-cash-coin"></i>
+
+                        ₹ {{ student.fees }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="container-fluid mt-4">
+
+    <div class="row">
+
+        <!-- Notifications -->
+
+
+        <!-- Help -->
+
+        
+    </div>
+
+</div>
+<style>
+    .action-card{
+
+background:#f8f9fa;
+padding:30px;
+border-radius:18px;
+text-align:center;
+transition:.4s;
+cursor:pointer;
+border:2px solid transparent;
+
+}
+
+.action-card:hover{
+
+transform:translateY(-8px);
+border-color:#18b9aa;
+background:white;
+box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+.icon-box{
+
+width:60px;
+height:60px;
+background:#18b9aa;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:18px;
+font-size:26px;
+
+}
+
+.card-hover{
+
+transition:.4s;
+
+}
+
+.card-hover:hover{
+
+transform:translateY(-8px);
+box-shadow:0 15px 35px rgba(0,0,0,.15)!important;
+
+}
+</style>
+
+<footer class="text-center mt-5 mb-3 text-muted">
+
+    © 2026 Online Admission System | Design and
+
+    Developed by Ayush Saxena
+
+</footer>
 {% endblock %}

@@ -1,0 +1,167 @@
+{% extends 'student/studentlayout.html' %}
+{% block student %}
+
+<div class="container mt-4">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header text-white"
+             style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
+
+            <h3 class="mb-0">
+                <i class="bi bi-mortarboard-fill"></i>
+                Enrolled Course
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-3 text-center">
+
+                    {% if student.profile_pic %}
+                    <img src="{{ student.profile_pic.url }}"
+                         class="img-thumbnail rounded-circle"
+                         style="height:170px;width:170px;">
+                    {% endif %}
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <table class="table table-bordered">
+
+                        <tr>
+                            <th width="35%">Student Name</th>
+                            <td>{{ student.name }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ student.emailaddress }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Application ID</th>
+                            <td>{{ student.sid }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Session</th>
+                            <td>{{ student.Session }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Course</th>
+                            <td>{{ student.course }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Course Duration</th>
+                            <td>{{ student.course_duration }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Admission Fees</th>
+                            <td>
+                                <span class="fw-bold text-success">
+                                    ₹ {{ student.fees }}
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Payment ID</th>
+                            <td>{{ student.payment_id }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Payment Date</th>
+                            <td>{{ student.payment_date }}</td>
+                        </tr>
+
+                        <tr>
+
+                            <th>Payment Status</th>
+
+                            <td>
+
+                                {% if student.fees_status == "Paid" %}
+
+                                <span class="badge bg-success">
+                                    Payment Successful
+                                </span>
+
+                                {% else %}
+
+                                <span class="badge bg-danger">
+                                    Payment Pending
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="text-center mt-4 no-print">
+
+                {% if student.fees_status == "Paid" %}
+
+                <button class="btn btn-primary btn-lg"
+                        onclick="window.print()">
+
+                    <i class="bi bi-printer"></i>
+
+                    Print Receipt
+
+                </button>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+.card{
+    border-radius:15px;
+}
+
+.table th{
+    background:#f8f9fa;
+}
+
+@media print{
+
+    .no-print{
+        display:none;
+    }
+
+    body{
+        background:white;
+    }
+
+    .card{
+        box-shadow:none!important;
+        border:none!important;
+    }
+
+}
+
+</style>
+
+{% endblock %}

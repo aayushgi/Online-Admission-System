@@ -63,7 +63,6 @@
             color: #BBF7D0;
             margin-top: 20px;
         }
-        
     </style>
 </head>
 
@@ -74,9 +73,10 @@
                 <h4 class="text-white text-center"><i class="bi bi-leaf-fill"></i> Biotech Park</h4>
 
                 <hr class="text-white mt-0">
-                
-                <p class="fw-bold text-center w-100 rounded-2 p-2" style="      background: #f0e76f ;"><a href="{% url 'studentdash' %}" style="margin-top: 20px;">🏠
-                    Student Dashboard</a>
+
+                <p class="fw-bold text-center w-100 rounded-2 p-2" style="      background: #f0e76f ;"><a
+                        href="{% url 'studentdash' %}" style="margin-top: 20px;">🏠
+                        Student Dashboard</a>
                 </p>
 
                 <div class="text-center text-white mb-3">
@@ -92,34 +92,69 @@
 
                 <p id="heading">Student Menu</p>
 
-                <p class="menu">
+                <p class="menu {% if not student.step1_completed %}bg-success text-white{% endif %}">
+
                     <a href="{% url 'apply1' %}">
+
+                        {% if student.step1_completed %}
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        {% else %}
                         <i class="bi bi-pencil-square"></i>
+                        {% endif %}
+
                         Personal Information
-                    </a>
-                </p>
 
-                <p class="menu">
+                    </a>
+
+                </p>
+                <p
+                    class="menu {% if student.step1_completed and not student.step2_completed %}bg-success text-white{% endif %}">
+
                     <a href="{% url 'apply2' %}">
+
+                        {% if student.step2_completed %}
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        {% else %}
                         <i class="bi bi-file-earmark-check"></i>
+                        {% endif %}
+
                         Educational Information
-                    </a>
-                </p>
 
-                <p class="menu">
-                    <a href="#">
+                    </a>
+
+                </p>
+                <p
+                    class="menu {% if student.step2_completed and student.fees_status != 'Paid' %}bg-success text-white{% endif %}">
+
+                    <a href="{% url 'student_fees_payment' %}">
+
+                        {% if student.fees_status == "Paid" %}
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        {% else %}
                         <i class="bi bi-cash-stack"></i>
+                        {% endif %}
+
                         Fee Payment
+
                     </a>
+
                 </p>
 
-                <p class="menu">
-                    <a href="#">
-                        <i class="bi bi-book"></i>
-                        Enrolled Course
-                    </a>
-                </p>
+<p class="menu">
 
+    <a href="{% url 'student_enrolled_course' %}">
+
+        {% if student.fees_status == "Paid" %}
+            <i class="bi bi-check-circle-fill text-success"></i>
+        {% else %}
+            <i class="bi bi-book"></i>
+        {% endif %}
+
+        Enrolled Course
+
+    </a>
+
+</p>
                 <p class="menu">
                     <a href="#">
                         <i class="bi bi-award"></i>
