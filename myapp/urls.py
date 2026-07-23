@@ -34,4 +34,7 @@ urlpatterns=[
     path('payment_success/', payment_success, name='payment_success'),
     path('payment_failure/',payment_failure, name='payment_failure'),
     path('student_enrolled_course/',student_enrolled_course, name='student_enrolled_course'),
+    path('verified_students/',verified_students,name='verified_students'),
+    path('pending_verifications/',pending_verifications,name='pending_verifications'),
+    path('admission_status/',admission_status,name='admission_status'),
 ] 

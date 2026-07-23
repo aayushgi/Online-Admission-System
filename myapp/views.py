@@ -326,7 +326,7 @@ def apply2(request):
         data.profile_pic=profile_pic
         data.sign=sign
         data.step2_completed = True
-        data.application_status='DV'
+        data.application_status='Pending'
         data.save()
         return redirect("student_fees_payment")
     return render(request,'student/apply2.html')
@@ -511,3 +511,35 @@ def student_enrolled_course(request):
     return render(request, "student/student_enrolled_course.html", {
         "student": student
     })
+
+def verified_students(request):
+    if 'adminid' not in request.session:
+        return redirect('adminlogin')
+    students = tbl_student.objects.filter(
+        application_status="Approved"
+    )
+    return render(
+            request,
+            "admin/verified_students.html",
+            {
+                "students": students
+            }
+        )
+
+
+def pending_verifications(request):
+    if 'adminid' not in request.session:
+        return redirect('adminlogin')
+    students = tbl_student.objects.filter(
+        application_status="Pending"
+    )
+    return render(
+        request,
+        "admin/pending_verifications.html",
+        {
+            "students": students
+        }
+    )
+
+def admission_status(request):
+    return render(request,"student/admission_status.html")

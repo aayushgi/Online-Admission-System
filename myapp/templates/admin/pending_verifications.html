@@ -1,0 +1,165 @@
+
+{% extends 'admin/adminlayout.html' %}
+
+{% block admin %}
+
+
+<div class="container-fluid mt-4">
+
+    <!-- Header -->
+
+    <div class="card border-0 shadow mb-4">
+
+        <div class="card-body text-white"
+             style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <h2 class="fw-bold">
+                        <i class="bi bi-hourglass-split"></i>
+                        Pending Student Applications
+                    </h2>
+
+                    <p class="mb-0">
+                        Review and Verify Student Applications
+                    </p>
+
+                </div>
+
+                <div class="text-end">
+
+                    <h1>{{ students.count }}</h1>
+
+                    <small>Total Pending</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Summary Cards -->
+
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body text-center">
+
+                    <i class="bi bi-people-fill fs-1 text-primary"></i>
+
+                    <h2>{{ students.count }}</h2>
+
+                    <h6>Total Pending</h6>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="card shadow border-0">
+
+        <div class="card-body table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Course</th>
+
+                        <th>Session</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for i in students %}
+
+                    <tr>
+
+
+                        <td>{{ i.name }}</td>
+
+                        <td>{{ i.emailaddress }}</td>
+
+                        <td>{{ i.course }}</td>
+
+                        <td>{{ i.Session }}</td>
+
+                        <td>
+
+                            <span class="badge bg-warning text-dark">
+
+                                Pending
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <a href="{% url 'details_review' i.emailaddress %}"
+
+                               class="btn btn-success btn-sm">
+
+                                <i class="bi bi-eye-fill"></i>
+
+                                Review
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="7" class="text-center">
+
+                            No Pending Applications Found
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

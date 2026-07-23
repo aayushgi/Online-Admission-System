@@ -121,8 +121,8 @@ overflow-y: auto;
                 <p class=" menu"><a href="{% url 'showstudent' %}">👥 Show Student</a></p>
                  <h6 class="h6-menu">DOCUMENT VERIFICATON</h6>
                  <p id="heading">Manage Verification</p>
-                 <p class=" menu"><a href="#">✅ Verified Student</a></p>
-                 <p class=" menu" style="font-size: 15px; font-weight: 900;"><a href="#">⌛Pending Verification</a></p>
+                 <p class=" menu"><a href="{% url 'verified_students' %}">✅ Verified Student</a></p>
+                 <p class=" menu" style="font-size: 15px; font-weight: 900;"><a href="{% url 'pending_verifications' %}">⌛Pending Verification</a></p>
                 <p class="menu" style="border: 1px solid gray; background-color: rgba(211, 211, 211, 0.341);"><a
                         href="{% url 'logout' %}"><i class="bi bi-box-arrow-left"></i> Logout</a></p>
 
