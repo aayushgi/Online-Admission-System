@@ -142,7 +142,9 @@
                         <th>Password</th>
                         <th>Gender</th>
                         <th>DOB</th>
+                        <th>Payment Status</th>
                         <th>Action</th>
+
                     </tr>
                 </thead>
 
@@ -166,7 +168,14 @@
 
                         <td>{{ i.dob }}</td>
                         <td>
-                            <a href="{% url 'details_review' i.emailaddress %}" class="btn btn-outline-danger btn-sm">
+                            {% if i.fees_status == "Paid" %}
+                            <span class="badge bg-success">Paid</span>
+                            {% else %}
+                            <span class="badge bg-warning text-dark">Unpaid</span>
+                            {% endif %}
+                        </td>
+                        <td >
+                            <a href="{% url 'details_review' i.emailaddress %}" class="btn btn-outline-danger btn-sm ">
                                 View
                             </a>
                             <a href="{% url 'deletestudent' i.sid %}" class="btn btn-danger btn-sm delete-btn"
@@ -191,6 +200,9 @@
 
     </div>
 
+    <footer class="text-center py-3 mt-auto">
+        © 2026 Online Admission System | Design and Developed by Ayush Saxena. All Rights Reserved.
+    </footer>
 </div>
 
 {% endblock %}

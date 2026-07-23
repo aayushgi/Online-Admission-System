@@ -109,20 +109,17 @@
                     <label class="form-label d-block">Gender</label>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" value="M" {% if data.gender=="M"
-                            %}checked{% endif %}>
+                        <input class="form-check-input" type="radio" name="gender" value="M" {% if data.gender == "M" %}checked{% endif %}>
                         <label class="form-check-label">Male</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" value="F" {% if data.gender=="F"
-                            %}checked{% endif %}>
+                        <input class="form-check-input" type="radio" name="gender" value="F" {% if data.gender == "F" %}checked{% endif %}>
                         <label class="form-check-label">Female</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" value="O" {% if data.gender=="O"
-                            %}checked{% endif %}>
+                        <input class="form-check-input" type="radio" name="gender" value="O" {% if data.gender == "O" %}checked{% endif %}>
                         <label class="form-check-label">Other</label>
                     </div>
 
@@ -133,64 +130,66 @@
                     <input type="date" class="form-control" name="dob" value="{{ data.dob|date:'Y-m-d' }}">
                 </div>
 
-                <hr class="my-4">
+            </div>
 
-                <!-- Admission Details -->
+            <hr class="my-4">
 
-                <h5 class="fw-bold  mb-3">
-                    <i class="bi bi-book-half"></i>
-                    Admission Details
-                </h5>
+            <!-- Admission Details -->
 
-                <div class="row g-4">
+            <h5 class="fw-bold  mb-3">
+                <i class="bi bi-book-half"></i>
+                Admission Details
+            </h5>
 
-                    <div class="col-md-6">
+            <div class="row g-4">
 
-                        <label class="form-label">Session</label>
-                        <select class="form-select" name="session">
-                            <option value="">Select Session</option>
+                <div class="col-md-6">
 
-                            {% for i in ad %}
-                            <option value="{{ i.session_name }}">
-                                {{ i.session_name }}
-                            </option>
-                            {% endfor %}
-                        </select>
+                    <label class="form-label">Session</label>
+                    <select class="form-select" name="session">
+                        <option value="">Select Session</option>
 
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <label class="form-label">Course</label>
-                        <select class="form-select" name="course">
-                            <option value="">Select Course</option>
-
-                            {% for i in ab %}
-                            <option value="{{ i.course_name }}">
-                                {{ i.course_name }}
-                            </option>
-                            {% endfor %}
-                        </select>
-
-                    </div>
+                        {% for i in ad %}
+                        <option value="{{ i.session_name }}">
+                            {{ i.session_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
 
                 </div>
 
-                <div class="text-end mt-5">
+                <div class="col-md-6">
 
-                    <button class="btn btn-lg px-5 text-white fw-bold"
-                        style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
+                    <label class="form-label">Course</label>
+                    <select class="form-select" name="course">
+                        <option value="">Select Course</option>
 
-                        <i class="bi bi-arrow-right-circle-fill"></i>
-                        Save & Continue
-
-                    </button>
+                        {% for i in ab %}
+                        <option value="{{ i.course_name }}">
+                            {{ i.course_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
 
                 </div>
 
             </div>
 
+            <div class="text-end mt-5">
+
+                <button class="btn btn-lg px-5 text-white fw-bold"
+                    style="background:linear-gradient(90deg,#0b3f49,#18b9aa);">
+
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                    Save & Continue
+
+                </button>
+
+            </div>
+
         </div>
+
+    </div>
 
 </form>
 
@@ -228,7 +227,7 @@
         opacity: .15;
     }
 </style>
-<footer class="text-center py-3 text-white">
+<footer class="text-center py-3 ">
     © 2026 Online Admission System | Design and Developed by Ayush Saxena. All Rights Reserved.
 </footer>
 

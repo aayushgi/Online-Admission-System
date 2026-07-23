@@ -219,28 +219,30 @@
         <hr>
         <div class="d-flex justify-content-between mt-4 no-print">
 
-    {% if student.application_status != "Approved" %}
+            {% if student.application_status != "Approved" %}
 
-    <a href="{% url 'verify' student.emailaddress %}" class="btn btn-success px-4">
-        Verify
-    </a>
+            <a href="{% url 'verify' student.emailaddress %}" class="btn btn-success px-4">
+                Verify
+            </a>
 
-    <a href="{% url 'reject' student.emailaddress %}"
-        class="btn btn-danger px-4"
-        onclick="return confirm('Are you sure you want to reject this application?');">
-        Reject
-    </a>
+            <a href="{% url 'reject' student.emailaddress %}" class="btn btn-danger px-4"
+                onclick="return confirm('Are you sure you want to reject this application?');">
+                Reject
+            </a>
 
-    {% endif %}
+            {% endif %}
 
-    <button onclick="window.print()" class="btn btn-primary px-4">
-        Print Form
-    </button>
+            <button onclick="window.print()" class="btn btn-primary px-4">
+                Print Form
+            </button>
 
-</div>
+        </div>
 
     </div>
 
+    <footer class="text-center py-3 mt-auto">
+        © 2026 Online Admission System | Design and Developed by Ayush Saxena. All Rights Reserved.
+    </footer>
 </div>
 
 <style>
