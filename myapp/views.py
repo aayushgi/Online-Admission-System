@@ -6,8 +6,12 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.cache import cache_control
 import uuid
 import hashlib
+from .decorators import admin_required
+from .decorators import student_required
+from django.views.decorators.cache import never_cache
 
 
 # Create your views here.
@@ -26,14 +30,25 @@ def loginsave(request):
             if user.status=="Active":
                 request.session['adminid']=username
                 return redirect('dashboard')
-        else:
+        else:   
             return redirect('adminlogin')
+@admin_required
 def dashboard(request):
     total_session = session.objects.count()
     total_course = tbl_course.objects.count()
     total_student = tbl_student.objects.count()
+    verified_students=tbl_student.objects.filter(application_status="Approved").count()
+    pending_verifications = tbl_student.objects.filter(application_status="Pending").count()
+    enrolled_students = tbl_student.objects.filter(fees_status="Paid").count()
+
     
-    return render(request, 'admin/dashboard.html', {'total_session': total_session ,'total_course':total_course,'total_student':total_student})    
+    return render(request, 'admin/dashboard.html', {'total_session': total_session ,
+                                                    'total_course':total_course,
+                                                    'total_student':total_student,
+                                                    'verified_students':verified_students,
+                                                    'pending_verifications':pending_verifications,
+                                                    'enrolled_students':enrolled_students
+                                                    })    
 
     
 
@@ -42,9 +57,9 @@ def dashboard(request):
     total_session = session.objects.count()
 
     return render(request, 'admin/dashboard.html',{'total_session': total_session})
-
 def course(request):
-    return render(request, 'student/course.html')
+    courses = tbl_course.objects.all()
+    return render(request, 'student/course.html', {'courses': courses})
 
 def about(request):
     return render(request, 'student/about.html')
@@ -55,12 +70,11 @@ def contact(request):
 def loginviahome(request):
     return render(request, 'student/login.html')
 
-
+@never_cache
+@admin_required
 def addsession(request):
     
     # Check admin login session
-    if 'adminid' not in request.session:
-        return redirect('adminlogin')
 
     sessions = session.objects.all()
     
@@ -79,18 +93,23 @@ def addsession(request):
           
     return render(request, 'admin/addsession.html')
 
+@never_cache
+@admin_required
 def deletesession(request,id):
     ab=session.objects.get(id=id)
     ab.delete()
     messages.info(request,'session Deleted Successfully')
     return redirect('showsession')
 
+@never_cache
+@admin_required
 def editcourse(request, id):
     course = tbl_course.objects.get(id=id)
     sessions = session.objects.all()
     return render(request, 'admin/editcourse.html', {'course': course, 'sessions': sessions})
 
-
+@never_cache
+@admin_required
 def updatecourse(request, id):
     course = tbl_course.objects.get(id=id)
     if request.method == "POST":
@@ -103,22 +122,25 @@ def updatecourse(request, id):
         return redirect('showcourse')
     return render(request, 'admin/editcourse.html', {'course': course})
 
+@never_cache
+@admin_required
 def deletecourse(request, id):
     course = tbl_course.objects.get(id=id)
     course.delete()
     messages.info(request, 'Course Deleted Successfully')
     return redirect('showcourse')
 
-
+@never_cache
+@admin_required
 def showsession(request):
     ab=session.objects.all()
     return render(request, 'admin/showsession.html', {'ab':ab})
 
+@never_cache
+@admin_required
 def addcourse(request):
 
     # Check admin login session
-    if 'adminid' not in request.session:
-        return redirect('adminlogin')
 
     sessions = session.objects.all()
 
@@ -146,11 +168,14 @@ def addcourse(request):
         'admin/addcourse.html',
         {'sessions': sessions}
     )
-
+@never_cache
+@admin_required
 def showcourse(request):
     ab=tbl_course.objects.all()
     return render(request, 'admin/showcourse.html', {'ab':ab})
 
+@never_cache
+@admin_required
 def showstudent(request):
     # Check admin login session
    
@@ -161,6 +186,9 @@ def showstudent(request):
 def logout(request):
     request.session.flush()
     return redirect('adminlogin')
+
+@never_cache
+@admin_required
 def addstudent(request):
     if request.method == "POST":
 
@@ -224,7 +252,7 @@ Biotech Park Admission Team
     #--------------------------------------------------------------------student shows-------------------------------------------------------------------------------
     
     
-    
+
 def student_login(request):
     if request.method == "POST":
         emailaddress = request.POST.get('emailaddress')
@@ -239,6 +267,8 @@ def student_login(request):
             return redirect('student_login')
     return render(request, 'student/student_login.html')
 
+@never_cache
+@student_required
 def studentdash(request):
     email=request.session.get('studentid')
     student=tbl_student.objects.filter(emailaddress=email).first()
@@ -247,6 +277,8 @@ def studentdash(request):
     }
     return render(request, 'student/studentdash.html',context)
 
+@never_cache
+@student_required
 def apply1(request):
     ab = tbl_course.objects.all()
     ad = session.objects.all()
@@ -298,8 +330,10 @@ def apply1(request):
         'student': data,
     }
 
-    return render(request, 'student/apply1.html', context)    
-
+    return render(request, 'student/apply1.html', context)  
+  
+@never_cache
+@student_required
 def apply2(request):
     sid=request.session.get('studentid')
     data=tbl_student.objects.get(emailaddress=sid)
@@ -331,12 +365,29 @@ def apply2(request):
         return redirect("student_fees_payment")
     return render(request,'student/apply2.html')
 
+@never_cache
+@admin_required
+def deletestudent(request,id):
+    student=tbl_student.objects.get(sid=id)
+    student.delete()
+    messages.info(request,"student deleted successfully")
+    return redirect('showstudent')
 
+
+@never_cache
+@admin_required
+def reject(request,emailaddress):
+    student=tbl_student.objects.get(emailaddress=emailaddress)
+    student.application_status="Rejected"
+    student.save()
+    return redirect('details_review',emailaddress=emailaddress)
 
 def studentlogout(request):
     request.session.flush()
     return redirect('student_login')
 
+@never_cache
+@admin_required
 def details_review(request, emailaddress):
     student = tbl_student.objects.get(emailaddress=emailaddress)
 
@@ -348,10 +399,14 @@ def details_review(request, emailaddress):
         }
     )
 
-def reviewstudent(request):
+@never_cache
+@admin_required
+def reviewstudent(request,emailaddress):
     ab=tbl_student.objects.get(emailaddress=emailaddress)
     return render(request,'admin/showstudent.html',{'ab':ab})
 
+@never_cache
+@admin_required
 def verify(request,emailaddress):
     student=tbl_student.objects.get(emailaddress=emailaddress)
     student.application_status="Approved"
@@ -368,7 +423,8 @@ def get_login_student(request):
 
     return None
 
-
+@never_cache
+@student_required
 def student_fees_payment(request):
 
     student = get_login_student(request)
@@ -380,7 +436,8 @@ def student_fees_payment(request):
         'student': student
     })
 
-
+@never_cache
+@student_required
 def payu_payment(request):
 
     student = get_login_student(request)
@@ -500,7 +557,8 @@ def payment_failure(request):
 
     return redirect("student_fees_payment")
 
-
+@never_cache
+@student_required
 def student_enrolled_course(request):
 
     student = get_login_student(request)
@@ -508,10 +566,17 @@ def student_enrolled_course(request):
     if not student:
         return redirect("student_login")
 
+    if student.application_status == "Rejected":
+        messages.error(request,"your application is rejected. This page will not open ")
+        return redirect('studentdash')
+
     return render(request, "student/student_enrolled_course.html", {
         "student": student
     })
 
+
+@never_cache
+@admin_required
 def verified_students(request):
     if 'adminid' not in request.session:
         return redirect('adminlogin')
@@ -526,7 +591,8 @@ def verified_students(request):
             }
         )
 
-
+@never_cache
+@admin_required
 def pending_verifications(request):
     if 'adminid' not in request.session:
         return redirect('adminlogin')
@@ -541,5 +607,12 @@ def pending_verifications(request):
         }
     )
 
+@never_cache
 def admission_status(request):
+    student=get_login_student(request)
+    if not student:
+        return redirect("student_login")
+    if student.application_status == "Rejected":
+        messages.error(request,"your application is rejected. This page will not open ")
+        return redirect('studentdash')
     return render(request,"student/admission_status.html")

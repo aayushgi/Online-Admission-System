@@ -134,8 +134,8 @@
 
                 <thead>
                     <tr>
-                       <th>sno</th>
-                        
+                        <th>sno</th>
+
                         <th>Student Name</th>
                         <th>Email</th>
                         <th>Mobile Number</th>
@@ -158,24 +158,28 @@
 
                         <td>{{ i.contact_no }}</td>
 
-                         <td>{{ i.password }}</td>
+                        <td>{{ i.password }}</td>
 
                         <td>
-                             {{ i.gender }}
+                            {{ i.gender }}
                         </td>
 
                         <td>{{ i.dob }}</td>
-                        <td> <a href="{% url 'details_review' i.emailaddress %}"
-   class="btn btn-outline-danger btn-sm">
-    View
-</a>
+                        <td>
+                            <a href="{% url 'details_review' i.emailaddress %}" class="btn btn-outline-danger btn-sm">
+                                View
+                            </a>
+                            <a href="{% url 'deletestudent' i.sid %}" class="btn btn-danger btn-sm delete-btn"
+                                onclick="return confirm('Are you sure you want to delete this student?');">
+                                Delete
+                            </a>
                         </td>
 
-                       
+
 
                     </tr>
 
-                   
+
 
                     {% endfor %}
 

@@ -37,4 +37,6 @@ urlpatterns=[
     path('verified_students/',verified_students,name='verified_students'),
     path('pending_verifications/',pending_verifications,name='pending_verifications'),
     path('admission_status/',admission_status,name='admission_status'),
+    path('deletestudent/<int:id>/', deletestudent, name='deletestudent'),
+    path('reject/<str:emailaddress>/', reject, name='reject'),
 ] 

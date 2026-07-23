@@ -155,33 +155,39 @@
                             </small>
 
                             <h5 class="fw-bold mt-2">
+{% if student.application_status == "Approved" %}
 
-                                {% if student.application_status == "Approved" %}
+    <span class="text-success">
 
-                                    <span class="text-success">
+        Approved
 
-                                        Approved
+    </span>
 
-                                    </span>
+{% elif student.application_status == "DV" %}
 
-                                {% elif student.application_status == "DV" %}
+    <span class="text-warning">
 
-                                    <span class="text-warning">
+        Pending
 
-                                        Pending
+    </span>
 
-                                    </span>
+{% elif student.application_status == "Rejected" %}
 
-                                {% else %}
+    <span class="text-danger">
 
-                                    <span class="text-danger">
+        Rejected
 
-                                        Waiting
+    </span>
 
-                                    </span>
+{% else %}
 
-                                {% endif %}
+    <span class="text-danger">
 
+        Waiting
+
+    </span>
+
+{% endif %}
                             </h5>
 
                         </div>

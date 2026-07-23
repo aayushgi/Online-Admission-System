@@ -368,7 +368,7 @@
                 </div>
 
                 <div class="stat-number">
-                    {{ pending_verification }}
+                    {{ pending_verifications }}
                 </div>
 
                 <div class="stat-title">
@@ -488,7 +488,7 @@
 
                     <div class="col-md-6">
 
-                        <a href="#" class="action-btn">
+                        <a href="{% url 'pending_verifications' %}" class="action-btn">
 
                             <div class="action-icon">
                                 <i class="bi bi-file-earmark-check-fill"></i>
@@ -553,23 +553,5 @@
     </div>
     <!-- ================= RECENT ACTIVITY ================= -->
 
-    <div class="row mt-4">
-
-        <div class="col-12">
-
-            <div class="section-card">
-
-                <h3 class="section-title">
-                    Recent Activity
-                </h3>
-
-               
-
-            </div>
-
-        </div>
-
-
-    </div>
 
     {% endblock %}
